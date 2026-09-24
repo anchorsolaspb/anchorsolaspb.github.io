@@ -1,5 +1,8 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.5.1 (24 Sep 2026)
+- Link preview image renamed to share-preview-2.jpg so WhatsApp, Facebook and preview sites fetch the new crop with all three pipers instead of a cached copy.
+
 ## v1.5.0 (24 Sep 2026)
 - Gold corner brackets frame the home page photo and the About page photo, replacing the plain outlines.
 - Each page fades in softly when you switch pages.
