@@ -1,5 +1,11 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.1.0 (24 Sep 2026)
+- Events can have a description and up to 12 photos, both edited in Pages CMS.
+- The first photo shows on the event card. Clicking an event opens its description and photo gallery.
+- Photos uploaded in Pages CMS are saved to assets/images/events.
+- Removed the "Add to calendar" button from the event pop-up, since it did not add anything to a calendar.
+
 ## v1.0.0 (24 Sep 2026)
 - Events page shows two tabs, Past Events and Past Competitions. Filters, the Upcoming tab and the Results tab are removed.
 - Pages CMS "Type" field renamed "Show under", with options Past Events and Past Competitions.

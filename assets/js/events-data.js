@@ -13,6 +13,12 @@
     return a.getDate() + ' ' + MON[a.getMonth()] + ' ' + a.getFullYear() + ' – ' +
       b.getDate() + ' ' + MON[b.getMonth()] + ' ' + b.getFullYear();
   }
+  // Image paths saved by Pages CMS, made safe to use as relative links
+  function toImages(v) {
+    var arr = Array.isArray(v) ? v : (v ? [v] : []);
+    return arr.filter(function (x) { return typeof x === 'string' && x.trim(); })
+      .map(function (x) { x = x.trim(); return /^https?:\/\//.test(x) ? x : x.replace(/^\/+/, ''); });
+  }
   function convert(list) {
     var today = new Date(); today.setHours(0, 0, 0, 0);
     var out = [];
@@ -32,6 +38,8 @@
         time: e.time || 'TBC',
         type: e.type === 'Competition' ? 'Competition' : 'Performance',
         st: [['success', 'accent', 'neutral'].indexOf(e.colour) >= 0 ? e.colour : 'neutral', e.status || 'Event'],
+        desc: typeof e.description === 'string' ? e.description.trim() : '',
+        images: toImages(e.images),
         past: (end || start) < today,
         _start: start
       });

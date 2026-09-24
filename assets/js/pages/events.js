@@ -125,7 +125,28 @@
     }, React.createElement(Icon, {
       name: "map-pin",
       size: 15
-    }), e.p)))))) : React.createElement("div", {
+    }), e.p)), e.images.length > 0 && React.createElement("img", {
+      src: e.images[0],
+      alt: e.t,
+      loading: "lazy",
+      style: {
+        display: 'block',
+        width: '100%',
+        maxWidth: 560,
+        height: 'clamp(150px,20vw,220px)',
+        objectFit: 'cover',
+        marginTop: 8
+      }
+    }), (e.desc || e.images.length > 0) && React.createElement("span", {
+      className: "aspb-link",
+      style: {
+        font: '600 11px/1 var(--font-sans)',
+        letterSpacing: '.14em',
+        textTransform: 'uppercase',
+        color: 'var(--navy-800)',
+        marginTop: 4
+      }
+    }, "View details", e.images.length > 1 ? ' · ' + e.images.length + ' photos' : ''))))) : React.createElement("div", {
       style: {
         padding: '64px 0 120px',
         font: '400 20px/1.5 var(--font-serif)',
@@ -137,27 +158,65 @@
       onClose: () => setSel(null),
       eyebrow: sel && (sel.day.includes('–') ? sel.day : sel.day + ' ' + sel.d + ' ' + sel.m),
       title: sel && sel.t,
-      actions: React.createElement(React.Fragment, null, React.createElement(Button, {
-        variant: "ghost",
+      width: 760,
+      actions: React.createElement(Button, {
+        variant: "secondary",
         onClick: () => setSel(null)
-      }, "Close"), React.createElement(Button, {
-        iconLeft: "calendar-plus",
-        onClick: () => {
-          setSel(null);
-          toast('Added to your calendar');
-        }
-      }, "Add to calendar"))
+      }, "Close")
     }, sel && React.createElement("div", {
+      className: "aspb-dialog-body",
       style: {
         display: 'flex',
         flexDirection: 'column',
-        gap: 8
+        gap: 16,
+        maxHeight: 'calc(100vh - 260px)',
+        overflowY: 'auto'
       }
-    }, React.createElement("span", null, sel.time, " · ", sel.p), React.createElement("span", {
+    }, React.createElement("span", {
       style: {
+        font: '400 14px/1.4 var(--font-sans)',
         color: 'var(--text-muted)'
       }
-    }, "Details to be confirmed."))));
+    }, sel.time, " · ", sel.p), sel.desc && React.createElement("div", {
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 12
+      }
+    }, sel.desc.split(/\n\s*\n/).map((para, i) => React.createElement("p", {
+      key: i,
+      style: {
+        margin: 0,
+        font: '400 17px/1.65 var(--font-serif)',
+        color: 'var(--text-body)',
+        whiteSpace: 'pre-line'
+      }
+    }, para))), sel.images.length > 0 && React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: sel.images.length === 1 ? '1fr' : 'repeat(auto-fill,minmax(min(100%,200px),1fr))',
+        gap: 8
+      }
+    }, sel.images.map((src, i) => React.createElement("a", {
+      key: i,
+      href: src,
+      target: "_blank",
+      rel: "noopener",
+      style: {
+        display: 'block',
+        background: 'var(--navy-50)'
+      }
+    }, React.createElement("img", {
+      src: src,
+      alt: sel.t + ' photo ' + (i + 1),
+      loading: "lazy",
+      style: {
+        display: 'block',
+        width: '100%',
+        aspectRatio: sel.images.length === 1 ? 'auto' : '4 / 3',
+        objectFit: 'cover'
+      }
+    })))))));
   }
   window.EventsScreen = EventsScreen;
 })();
