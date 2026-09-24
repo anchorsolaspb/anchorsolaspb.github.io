@@ -1,39 +1,42 @@
-{ "events":[
-  {
-    "title": "BB 17A Inauguration Ceremony",
-    "date": "2026-09-27",
-    "time": "3.00 pm",
-    "venue": "Christ Methodist Church, Singapore",
-    "type": "Performance",
-    "colour": "success"
-  },
-  {
-    "title": "BBM Pipes and Drums Festival, BB Pesta 2026",
-    "date": "2026-12-28",
-    "end_date": "2027-01-01",
-    "time": "Exact day TBC",
-    "venue": "Penang, Malaysia",
-    "type": "Performance",
-    "status": "Overseas",
-    "colour": "accent"
-  },
-  {
-    "title": "Peranakan Night for Cerebral Palsy Alliance Singapore",
-    "date": "2026-09-19",
-    "time": "7.30 pm",
-    "venue": "Tanglin Club, Singapore",
-    "type": "Performance",
-    "status": "Charity",
-    "colour": "neutral"
-  },
-  {
-    "title": "19th Pipes and Drums Festival",
-    "date": "2025-11-21",
-    "end_date": "2025-11-22",
-    "time": "Two days",
-    "venue": "Christ Church Secondary School, Singapore",
-    "type": "Competition",
-    "status": "Festival",
-    "colour": "neutral"
-  }
-]}
+{
+  "events": [
+    {
+      "title": "BB 17A Inauguration Ceremony",
+      "date": "2026-09-27",
+      "time": "3.00 pm",
+      "venue": "Christ Methodist Church, Singapore",
+      "type": "Performance",
+      "status": "BB Event",
+      "colour": "success"
+    },
+    {
+      "title": "BBM Pipes and Drums Festival, BB Pesta 2026",
+      "date": "2026-12-28",
+      "end_date": "2027-01-01",
+      "time": "Exact day TBC",
+      "venue": "Penang, Malaysia",
+      "type": "Performance",
+      "status": "Overseas",
+      "colour": "accent"
+    },
+    {
+      "title": "Peranakan Night for Cerebral Palsy Alliance Singapore",
+      "date": "2026-09-19",
+      "time": "7.30 pm",
+      "venue": "Tanglin Club, Singapore",
+      "type": "Performance",
+      "status": "Charity",
+      "colour": "neutral"
+    },
+    {
+      "title": "19th Pipes and Drums Festival",
+      "date": "2025-11-21",
+      "end_date": "2025-11-22",
+      "time": "Two days",
+      "venue": "Christ Church Secondary School, Singapore",
+      "type": "Competition",
+      "status": "Festival",
+      "colour": "neutral"
+    }
+  ]
+}
