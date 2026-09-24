@@ -4,5 +4,5 @@
 // so enquiries are delivered to that inbox.
 // Until a key is added, the form falls back to opening the visitor's email app.
 window.ASPB_FORM = {
-  accessKey: ''
+  accessKey: 'ae8cec85-6a8b-45ec-ac0b-6ed0944d92dc'
 };
