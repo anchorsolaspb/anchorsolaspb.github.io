@@ -1,3 +1,8 @@
+media:
+  input: assets/images/events
+  output: assets/images/events
+  extensions: [jpg, jpeg, png, webp]
+  rename: safe
 content:
   - name: events
     label: Events
@@ -47,6 +52,17 @@ content:
                   label: Past Events
                 - name: Competition
                   label: Past Competitions
+          - name: description
+            label: Description
+            description: Shown when someone clicks the event. Leave a blank line between paragraphs.
+            type: text
+          - name: images
+            label: Photos
+            description: Optional. The first photo also shows on the event card. Photos under 1 MB load fastest.
+            type: image
+            options:
+              multiple:
+                max: 12
           - name: status
             label: Badge text
             description: Short label on the event card, for example Confirmed, Overseas or Charity
