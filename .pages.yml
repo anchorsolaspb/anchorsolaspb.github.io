@@ -5,50 +5,57 @@ content:
     type: file
     path: events.json
     format: json
-    list: true
     fields:
-      - name: title
-        label: Event name
-        type: string
-        required: true
-      - name: date
-        label: Date (first day, if it runs over several days)
-        type: date
-        required: true
-        options:
-          format: yyyy-MM-dd
-      - name: end_date
-        label: Last day (only for multi-day events, otherwise leave empty)
-        type: date
-        default: ""
-        options:
-          format: yyyy-MM-dd
-      - name: time
-        label: Time
-        description: For example 7.30 pm, TBC or Two days
-        type: string
-      - name: venue
-        label: Venue
-        type: string
-      - name: type
-        label: Type
-        type: select
-        default: Performance
-        options:
-          values: [Performance, Competition]
-      - name: status
-        label: Badge text
-        description: Short label on the event card, for example Confirmed, Overseas or Charity
-        type: string
-      - name: colour
-        label: Badge colour
-        type: select
-        default: neutral
-        options:
-          values:
-            - name: success
-              label: Green (confirmed)
-            - name: accent
-              label: Gold (highlight)
-            - name: neutral
-              label: Grey (general)
+      - name: events
+        label: false
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title} ({date})"
+        fields:
+          - name: title
+            label: Event name
+            type: string
+            required: true
+          - name: date
+            label: Date (first day, if it runs over several days)
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: end_date
+            label: Last day (only for multi-day events, otherwise leave empty)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: time
+            label: Time
+            description: For example 7.30 pm, TBC or Two days
+            type: string
+          - name: venue
+            label: Venue
+            type: string
+          - name: type
+            label: Type
+            type: select
+            default: Performance
+            options:
+              values: [Performance, Competition]
+          - name: status
+            label: Badge text
+            description: Short label on the event card, for example Confirmed, Overseas or Charity
+            type: string
+          - name: colour
+            label: Badge colour
+            type: select
+            default: neutral
+            options:
+              values:
+                - name: success
+                  label: Green (confirmed)
+                - name: accent
+                  label: Gold (highlight)
+                - name: neutral
+                  label: Grey (general)
