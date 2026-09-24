@@ -3,24 +3,50 @@
     Input,
     Select,
     Radio,
-    Checkbox,
     Button,
     Icon,
     RangeSlider
   } = window.AnchorSolasDesignSystem_897ee1;
   const TO = 'admin@anchorsolaspb.com';
+  const KEY = ((window.ASPB_FORM || {}).accessKey || '').trim();
+  const HAS_KEY = /^[0-9a-f-]{30,}$/i.test(KEY);
+  const budgetText = b => 'S$' + b[0].toLocaleString() + ' to S$' + b[1].toLocaleString() + (b[1] >= 5000 ? '+' : '');
+  const subjectOf = f => 'Booking enquiry: ' + (f.type || 'Performance') + (f.date ? ' on ' + f.date : '') + ' (' + f.name.trim() + ')';
   function buildMail(f) {
-    const lines = ['Name: ' + f.name, 'Email: ' + f.email, 'Event type: ' + (f.type || 'Not specified'), 'Date: ' + (f.date || 'Not specified'), 'Performance: ' + f.perf, 'Budget: S$' + f.budget[0].toLocaleString() + ' to S$' + f.budget[1].toLocaleString() + (f.budget[1] >= 5000 ? '+' : ''), 'Remarks: ' + (f.remarks || 'None')];
-    const subject = 'Booking enquiry: ' + (f.type || 'Performance') + (f.date ? ' on ' + f.date : '') + ' (' + f.name + ')';
-    return 'mailto:' + TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+    const lines = ['Name: ' + f.name, 'Email: ' + f.email, 'Event type: ' + (f.type || 'Not specified'), 'Date: ' + (f.date || 'Not specified'), 'Performance: ' + f.perf, 'Budget: ' + budgetText(f.budget), 'Remarks: ' + (f.remarks || 'None')];
+    return 'mailto:' + TO + '?subject=' + encodeURIComponent(subjectOf(f)) + '&body=' + encodeURIComponent(lines.join('\n'));
   }
-  function openMail(href) {
-    window.location.href = href;
+  async function sendEnquiry(f, bot) {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: KEY,
+        subject: subjectOf(f),
+        from_name: 'ASPB website',
+        botcheck: bot,
+        name: f.name.trim(),
+        email: f.email.trim(),
+        'Event type': f.type || 'Not specified',
+        'Date': f.date || 'Not specified',
+        'Performance': f.perf,
+        'Budget': budgetText(f.budget),
+        'Remarks': f.remarks.trim() || 'None'
+      })
+    });
+    let data = {};
+    try {
+      data = await res.json();
+    } catch (e) {}
+    if (!res.ok || !data.success) throw new Error(data.body && data.body.message || data.message || 'Status ' + res.status);
   }
   function BookScreen({
     toast
   }) {
-    const [sent, setSent] = React.useState(false);
+    const [status, setStatus] = React.useState('idle');
     const [err, setErr] = React.useState({});
     const [f, setF] = React.useState({
       name: '',
@@ -31,24 +57,44 @@
       budget: [500, 1500],
       remarks: ''
     });
-    const [href, setHref] = React.useState('');
+    const [bot, setBot] = React.useState(false);
     const up = k => v => setF(s => ({
       ...s,
       [k]: v
     }));
     const ev = k => e => up(k)(e.target.value);
-    const submit = () => {
+    const submit = async () => {
       const e = {};
       if (!f.name.trim()) e.name = 'Please enter your name';
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) e.email = 'Please enter a valid email';
       setErr(e);
       if (Object.keys(e).length) return;
-      const h = buildMail(f);
-      setHref(h);
-      openMail(h);
-      setSent(true);
-      toast && toast('Opening your email app');
+      if (!HAS_KEY) {
+        window.location.href = buildMail(f);
+        setStatus('mailto');
+        return;
+      }
+      setStatus('sending');
+      try {
+        await sendEnquiry(f, bot);
+        setStatus('sent');
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } catch (x) {
+        console.warn('Enquiry failed', x);
+        setStatus('error');
+      }
     };
+    const reset = () => {
+      setF(s => ({
+        ...s,
+        remarks: ''
+      }));
+      setStatus('idle');
+    };
+    const done = status === 'sent' || status === 'mailto';
     return React.createElement("section", {
       style: {
         background: 'var(--navy-800)'
@@ -113,7 +159,8 @@
         flexDirection: 'column',
         gap: 22
       }
-    }, sent ? React.createElement("div", {
+    }, done ? React.createElement("div", {
+      role: "status",
       style: {
         padding: '48px 0',
         textAlign: 'center',
@@ -122,7 +169,37 @@
         alignItems: 'center',
         gap: 16
       }
-    }, React.createElement("div", {
+    }, status === 'sent' ? React.createElement(React.Fragment, null, React.createElement("div", {
+      style: {
+        width: 56,
+        height: 56,
+        borderRadius: '50%',
+        background: 'var(--green-100)',
+        color: 'var(--green-600)',
+        display: 'grid',
+        placeItems: 'center'
+      }
+    }, React.createElement(Icon, {
+      name: "check",
+      size: 28
+    })), React.createElement("div", {
+      style: {
+        font: '300 40px/1.1 var(--font-serif)',
+        color: 'var(--navy-800)'
+      }
+    }, "Enquiry sent."), React.createElement("p", {
+      style: {
+        margin: 0,
+        font: '400 16px/1.6 var(--font-sans)',
+        color: 'var(--text-muted)',
+        maxWidth: 380
+      }
+    }, "Thanks, ", f.name.trim(), ". The band will reply to ", React.createElement("b", {
+      style: {
+        color: 'var(--navy-800)',
+        fontWeight: 600
+      }
+    }, f.email.trim()), ".")) : React.createElement(React.Fragment, null, React.createElement("div", {
       style: {
         font: '300 40px/1.1 var(--font-serif)',
         color: 'var(--navy-800)'
@@ -135,7 +212,7 @@
         maxWidth: 380
       }
     }, "Your email app should have opened with the enquiry filled in. Press send there to reach the band."), React.createElement("a", {
-      href: href,
+      href: buildMail(f),
       className: "aspb-link",
       style: {
         textDecoration: 'none',
@@ -144,16 +221,10 @@
         textTransform: 'uppercase',
         color: 'var(--navy-800)'
       }
-    }, "Email app didn't open? Click here"), React.createElement("p", {
-      style: {
-        margin: 0,
-        font: '400 14px/1.6 var(--font-sans)',
-        color: 'var(--text-muted)'
-      }
-    }, "Or write to ", TO, " directly."), React.createElement(Button, {
+    }, "Email app didn't open? Click here")), React.createElement(Button, {
       variant: "secondary",
-      onClick: () => setSent(false)
-    }, "Edit enquiry")) : React.createElement(React.Fragment, null, React.createElement("div", {
+      onClick: reset
+    }, "Send another enquiry")) : React.createElement(React.Fragment, null, React.createElement("div", {
       style: {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))',
@@ -211,18 +282,48 @@
       placeholder: "Venue, timings, any tunes you'd like",
       value: f.remarks,
       onChange: ev('remarks')
-    }), React.createElement(Button, {
+    }), React.createElement("input", {
+      type: "checkbox",
+      name: "botcheck",
+      tabIndex: -1,
+      autoComplete: "off",
+      "aria-hidden": "true",
+      checked: bot,
+      onChange: e => setBot(e.target.checked),
+      style: {
+        position: 'absolute',
+        left: -9999,
+        width: 1,
+        height: 1,
+        opacity: 0
+      }
+    }), status === 'error' && React.createElement("div", {
+      role: "alert",
+      style: {
+        background: 'var(--red-100)',
+        color: 'var(--red-600)',
+        padding: '14px 16px',
+        font: '400 14px/1.5 var(--font-sans)'
+      }
+    }, "The enquiry didn't go through. Check your connection and try again, or ", React.createElement("a", {
+      href: buildMail(f),
+      style: {
+        color: 'inherit',
+        fontWeight: 600
+      }
+    }, "send it by email instead"), "."), React.createElement(Button, {
       size: "lg",
       variant: "primary",
-      iconRight: "send",
+      iconRight: status === 'sending' ? undefined : 'send',
+      disabled: status === 'sending',
       onClick: submit
-    }, "Send enquiry"), React.createElement("p", {
+    }, status === 'sending' ? 'Sending…' : 'Send enquiry'), React.createElement("p", {
       style: {
         margin: 0,
         font: '400 13px/1.5 var(--font-sans)',
         color: 'var(--text-muted)'
       }
-    }, "Sending opens your email app with the details filled in, addressed to ", TO, ".")))));
+    }, HAS_KEY ? 'Your enquiry goes straight to ' + TO + '.' : 'Sending opens your email app with the details filled in, addressed to ' + TO + '.')))));
   }
   window.BookScreen = BookScreen;
 })();

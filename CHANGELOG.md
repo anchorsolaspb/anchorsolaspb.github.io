@@ -1,5 +1,11 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.6.0 (25 Sep 2026)
+- Booking form sends enquiries directly to admin@anchorsolaspb.com through Web3Forms. Visitors no longer need an email app.
+- The form shows "Sending…" while it sends, an "Enquiry sent" confirmation when it works, and an error with an email fallback if it fails.
+- Hidden spam trap added to the form.
+- The Web3Forms key is kept in assets/js/form-config.js. Until it is added, the form opens the visitor's email app as before.
+
 ## v1.5.2 (24 Sep 2026)
 - Booking form: the round buttons next to each performance option keep their full size on phones instead of being squashed when the option text wraps onto two lines. They also line up with the first line of text.
 
