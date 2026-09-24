@@ -12,6 +12,87 @@ const fromHash = () => {
   const h = (location.hash || '').replace(/^#\/?/, '').toLowerCase();
   return PAGES.includes(h) ? h : 'home';
 };
+const NEXT = {
+  home: ['about', 'About'],
+  about: ['events', 'Events'],
+  events: ['book', 'Book Us'],
+  book: ['home', 'Home']
+};
+function ScrollAnchor({
+  page,
+  go
+}) {
+  const rail = React.useRef(null),
+    anchor = React.useRef(null),
+    rope = React.useRef(null);
+  const [atEnd, setAtEnd] = React.useState(false);
+  React.useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const doc = document.documentElement,
+        max = doc.scrollHeight - window.innerHeight;
+      const p = max > 4 ? Math.min(1, Math.max(0, window.scrollY / max)) : 1;
+      const h = rail.current ? rail.current.clientHeight : 0,
+        a = anchor.current ? anchor.current.offsetHeight : 0;
+      const y = p * (h - a);
+      if (anchor.current) anchor.current.style.transform = 'translateY(' + y + 'px)';
+      if (rope.current) rope.current.style.height = y + a / 2 + 'px';
+      setAtEnd(max <= 4 || window.scrollY >= max - 24);
+    };
+    const req = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', req, {
+      passive: true
+    });
+    window.addEventListener('resize', req);
+    const ro = new ResizeObserver(req);
+    ro.observe(document.body);
+    update();
+    return () => {
+      window.removeEventListener('scroll', req);
+      window.removeEventListener('resize', req);
+      ro.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [page]);
+  const [to, label] = NEXT[page] || NEXT.home;
+  return React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "aspb-rail",
+    ref: rail,
+    "aria-hidden": "true"
+  }, React.createElement("div", {
+    className: "aspb-rail-track"
+  }), React.createElement("div", {
+    className: "aspb-rail-rope",
+    ref: rope
+  }), React.createElement("div", {
+    className: "aspb-rail-anchor",
+    ref: anchor
+  }, React.createElement("svg", {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2.2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("circle", {
+    cx: "12",
+    cy: "5",
+    r: "3"
+  }), React.createElement("path", {
+    d: "M12 22V8"
+  }), React.createElement("path", {
+    d: "M5 12H2a10 10 0 0 0 20 0h-3"
+  })))), React.createElement("button", {
+    type: "button",
+    className: 'aspb-next' + (atEnd ? ' is-on' : ''),
+    tabIndex: atEnd ? 0 : -1,
+    "aria-hidden": !atEnd,
+    onClick: () => go(to)
+  }, to === 'home' ? 'Back to' : 'Next', " ", React.createElement("span", null, label, " →")));
+}
 function App() {
   const [page, setPage] = React.useState(fromHash);
   const [t, setT] = React.useState(null);
@@ -55,6 +136,9 @@ function App() {
     go: go,
     toast: toast
   })), React.createElement(Footer, {
+    go: go
+  }), React.createElement(ScrollAnchor, {
+    page: page,
     go: go
   }), t && React.createElement("div", {
     style: {

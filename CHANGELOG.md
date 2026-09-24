@@ -1,5 +1,11 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.3.0 (24 Sep 2026)
+- Scroll anchor: an anchor on the left edge sinks down a rope as you scroll. At the bottom of each page, a button takes you to the next page (Home, About, Events, Book Us, then back to Home).
+- Link preview image shows the three pipers and their bagpipes in full.
+- Removed the lighthouse beam from the home hero.
+- Homepage card "Where to hear us" renamed "Where we've played".
+
 ## v1.2.0 (24 Sep 2026)
 - Each page has its own link: the home page, #about, #events and #book. The browser back button now moves between pages, and links can be shared.
 - The browser tab title changes with the page.

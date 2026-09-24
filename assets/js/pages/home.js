@@ -88,15 +88,11 @@
     go
   }) {
     return React.createElement(React.Fragment, null, React.createElement("section", {
-      className: "aspb-hero",
       style: {
         background: 'var(--navy-800)',
         color: 'var(--paper)'
       }
     }, React.createElement("div", {
-      className: "aspb-beam",
-      "aria-hidden": "true"
-    }), React.createElement("div", {
       className: "aspb-stack",
       style: {
         maxWidth: 'var(--container-max)',
@@ -182,8 +178,8 @@
       go: go
     }), React.createElement(Route, {
       n: "02 · EVENTS",
-      title: "Where to hear us",
-      body: "Performances, brigade events and pipe band competitions across Singapore.",
+      title: "Where we've played",
+      body: "Performances, brigade events and pipe band competitions we've been part of.",
       cta: "See events",
       to: "events",
       go: go
