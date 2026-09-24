@@ -207,8 +207,6 @@ a:hover{color:var(--beacon-700)}
 @media (max-width: 820px) {
   :root { --sec-y: 72px; }
   .aspb-stack { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
-  .aspb-footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
-  .aspb-footer-logo { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {
   :root { --sec-y: 56px; --gutter: 20px; }
@@ -222,9 +220,11 @@ a:hover{color:var(--beacon-700)}
   .aspb-words > div + div { margin-top: 32px; border-top: 1px solid var(--border-on-inverse); }
 }
 @media (max-width: 520px) {
-  .aspb-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+  .aspb-footer-grid { grid-template-columns: auto minmax(0,1fr) minmax(0,1fr) !important; gap: 18px 20px !important; padding-top: 28px !important; }
+  .aspb-footer-logo { grid-row: span 2; }
+  .aspb-footer-logo img { height: 60px !important; width: auto; }
   .aspb-footer-follow { order: 2; }
-  .aspb-footer-contact { order: 3; grid-column: 1 / -1; }
+  .aspb-footer-contact { order: 3; grid-column: 2 / -1; }
 }
 
 /* ---------- Animated link underlines ---------- */
@@ -248,22 +248,9 @@ a:hover{color:var(--beacon-700)}
 @media (prefers-reduced-motion: reduce) { .aspb-link, .aspb-navlink::after { transition: none; } }
 @media (max-width: 820px) { .aspb-stack > div[style*="justify-self"] { justify-self: stretch !important; max-width: none !important; } }
 
-/* ---------- Scroll anchor (left rail) ----------
-   An anchor sinks down its rope as the page scrolls. At the bottom,
-   a button offers the next page. */
-.aspb-rail { position: fixed; left: 14px; top: 104px; bottom: 28px; width: 28px; z-index: 30; pointer-events: none; }
-.aspb-rail-track, .aspb-rail-rope { position: absolute; left: 13px; top: 0; width: 2px; border-radius: 2px; }
-.aspb-rail-track { bottom: 0; background: rgba(140,135,124,.28); }
-.aspb-rail-rope { height: 0; background: repeating-linear-gradient(to bottom, var(--beacon-500) 0 5px, transparent 5px 8px); }
-.aspb-rail-anchor {
-  position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%;
-  display: grid; place-items: center; background: var(--beacon-500); color: var(--navy-900);
-  box-shadow: 0 0 0 2px rgba(246,244,239,.9), 0 4px 10px rgba(10,27,48,.25);
-  will-change: transform;
-}
-.aspb-rail-anchor svg { width: 16px; height: 16px; }
+/* ---------- Next-page button (appears at the bottom of each page) ---------- */
 .aspb-next {
-  position: fixed; left: 52px; bottom: 24px; z-index: 31;
+  position: fixed; left: 24px; bottom: 20px; z-index: 31;
   display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 18px;
   border: 0; border-radius: 999px; cursor: pointer;
   background: var(--navy-800); color: var(--paper); box-shadow: 0 0 0 1px rgba(246,244,239,.25), var(--shadow-2);
@@ -274,13 +261,7 @@ a:hover{color:var(--beacon-700)}
 .aspb-next.is-on { opacity: 1; transform: none; pointer-events: auto; }
 .aspb-next:hover { background: var(--navy-950); }
 .aspb-next span { color: var(--beacon-300); }
-@media (max-width: 640px) {
-  .aspb-rail { left: 2px; top: 112px; bottom: 20px; width: 18px; }
-  .aspb-rail-track, .aspb-rail-rope { left: 8px; }
-  .aspb-rail-anchor { width: 18px; height: 18px; box-shadow: 0 0 0 1.5px rgba(246,244,239,.9); }
-  .aspb-rail-anchor svg { width: 11px; height: 11px; }
-  .aspb-next { left: 28px; bottom: 16px; }
-}
+@media (max-width: 640px) { .aspb-next { left: 16px; bottom: 14px; } }
 @media (prefers-reduced-motion: reduce) { .aspb-next { transition: none; } }
 /* Leave room at the very bottom for the next-page button */
-.aspb-footer-bar { padding-bottom: 80px !important; }
+.aspb-footer-bar { padding-bottom: 64px !important; }

@@ -161,7 +161,7 @@
     go
   }) {
     const L = {
-      font: '400 14px/2 var(--font-sans)',
+      font: '400 13px/1.9 var(--font-sans)',
       color: 'var(--paper)',
       textDecoration: 'none',
       cursor: 'pointer',
@@ -172,10 +172,10 @@
       children
     }) => React.createElement("div", {
       style: {
-        font: '600 11px/1 var(--font-sans)',
+        font: '600 10px/1 var(--font-sans)',
         letterSpacing: '.24em',
         color: 'var(--beacon-300)',
-        marginBottom: 16
+        marginBottom: 10
       }
     }, children);
     return React.createElement("footer", {
@@ -189,10 +189,11 @@
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '64px var(--gutter) 32px',
+        padding: '36px var(--gutter) 24px',
         display: 'grid',
-        gridTemplateColumns: '2fr 1fr 1fr 1fr',
-        gap: 32
+        gridTemplateColumns: 'minmax(0,1.4fr) repeat(3,minmax(0,1fr))',
+        gap: 24,
+        alignItems: 'start'
       }
     }, React.createElement("div", {
       className: "aspb-footer-logo"
@@ -210,7 +211,7 @@
     }, React.createElement(Logo, {
       variant: "stacked",
       color: "white",
-      height: 120,
+      height: 72,
       basePath: A,
       src: res(A + 'logo-stacked-white.png')
     }))), React.createElement("div", null, React.createElement(H, null, "BAND"), [['about', 'About'], ['events', 'Events'], ['book', 'Book Us']].map(([k, l]) => React.createElement("a", {
@@ -241,19 +242,19 @@
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '20px var(--gutter)',
+        padding: '14px var(--gutter)',
         borderTop: '1px solid var(--border-on-inverse)',
         font: '400 12px/1.4 var(--font-sans)',
         display: 'flex',
         justifyContent: 'space-between',
-        gap: 12,
+        gap: '4px 12px',
         flexWrap: 'wrap'
       }
     }, React.createElement("span", null, "© 2026 Anchor Solas Pipe Band"), React.createElement("span", {
       style: {
         fontStyle: 'italic',
         fontFamily: 'var(--font-serif)',
-        fontSize: 14
+        fontSize: 13
       }
     }, "Anchored in sound, bright in spirit!")));
   }
