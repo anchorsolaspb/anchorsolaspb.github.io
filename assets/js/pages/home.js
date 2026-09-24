@@ -88,11 +88,15 @@
     go
   }) {
     return React.createElement(React.Fragment, null, React.createElement("section", {
+      className: "aspb-hero",
       style: {
         background: 'var(--navy-800)',
         color: 'var(--paper)'
       }
     }, React.createElement("div", {
+      className: "aspb-beam",
+      "aria-hidden": "true"
+    }), React.createElement("div", {
       className: "aspb-stack",
       style: {
         maxWidth: 'var(--container-max)',

@@ -93,7 +93,12 @@
         gap: 32
       }
     }, React.createElement("a", {
-      onClick: () => go('home'),
+      href: "./",
+      "aria-label": "Anchor Solas Pipe Band home",
+      onClick: e => {
+        e.preventDefault();
+        go('home');
+      },
       style: {
         cursor: 'pointer',
         display: 'flex',
@@ -133,8 +138,13 @@
       }
     }, items.map(([k, l]) => React.createElement("a", {
       key: k,
+      href: k === 'home' ? './' : '#' + k,
+      "aria-current": page === k ? 'page' : undefined,
       className: page === k ? '' : 'aspb-navlink',
-      onClick: () => go(k),
+      onClick: e => {
+        e.preventDefault();
+        go(k);
+      },
       style: {
         cursor: 'pointer',
         textDecoration: 'none',
@@ -187,7 +197,11 @@
     }, React.createElement("div", {
       className: "aspb-footer-logo"
     }, React.createElement("a", {
-      onClick: () => go('home'),
+      href: "./",
+      onClick: e => {
+        e.preventDefault();
+        go('home');
+      },
       style: {
         cursor: 'pointer',
         display: 'inline-block'

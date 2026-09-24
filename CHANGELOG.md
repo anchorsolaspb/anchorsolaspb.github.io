@@ -1,5 +1,13 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.2.0 (24 Sep 2026)
+- Each page has its own link: the home page, #about, #events and #book. The browser back button now moves between pages, and links can be shared.
+- The browser tab title changes with the page.
+- Menu links are real links, so they work with a keyboard and can be opened in a new tab.
+- Link previews: sharing the site on WhatsApp, Telegram, Instagram or Facebook shows a picture, the band name and a short description.
+- Home hero: faint lighthouse beams turn slowly from the lighthouse logo behind the headline. They stay still for visitors who have reduced motion turned on.
+
+
 ## v1.1.0 (24 Sep 2026)
 - Events can have a description and up to 12 photos, both edited in Pages CMS.
 - The first photo shows on the event card. Clicking an event opens its description and photo gallery.

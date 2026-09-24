@@ -1,12 +1,40 @@
 const {
   Toast
 } = window.AnchorSolasDesignSystem_897ee1;
+const PAGES = ['home', 'about', 'events', 'book'];
+const TITLES = {
+  home: 'Anchor Solas Pipe Band',
+  about: 'About | Anchor Solas Pipe Band',
+  events: 'Events | Anchor Solas Pipe Band',
+  book: 'Book Us | Anchor Solas Pipe Band'
+};
+const fromHash = () => {
+  const h = (location.hash || '').replace(/^#\/?/, '').toLowerCase();
+  return PAGES.includes(h) ? h : 'home';
+};
 function App() {
-  const [page, setPage] = React.useState(['home', 'about', 'events', 'book'].includes(localStorage.getItem('aspb-page')) ? localStorage.getItem('aspb-page') : 'home');
+  const [page, setPage] = React.useState(fromHash);
   const [t, setT] = React.useState(null);
+  React.useEffect(() => {
+    const sync = () => {
+      setPage(fromHash());
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('popstate', sync);
+    window.addEventListener('hashchange', sync);
+    return () => {
+      window.removeEventListener('popstate', sync);
+      window.removeEventListener('hashchange', sync);
+    };
+  }, []);
+  React.useEffect(() => {
+    document.title = TITLES[page] || TITLES.home;
+  }, [page]);
   const go = p => {
+    if (!PAGES.includes(p)) p = 'home';
+    const url = p === 'home' ? location.pathname + location.search : '#' + p;
+    if (p !== page) history.pushState(null, '', url);
     setPage(p);
-    localStorage.setItem('aspb-page', p);
     window.scrollTo(0, 0);
   };
   const toast = m => {

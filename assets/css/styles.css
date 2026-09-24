@@ -247,3 +247,34 @@ a:hover{color:var(--beacon-700)}
 .aspb-navlink:hover::after, .aspb-navlink:focus-visible::after { transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce) { .aspb-link, .aspb-navlink::after { transition: none; } }
 @media (max-width: 820px) { .aspb-stack > div[style*="justify-self"] { justify-self: stretch !important; max-width: none !important; } }
+
+/* ---------- Lighthouse beam (home hero) ----------
+   Three faint beams turn slowly from the lighthouse in the header logo,
+   like a real lighthouse lamp. Solas = light. */
+.aspb-hero { position: relative; overflow: hidden; isolation: isolate; }
+.aspb-hero > .aspb-stack { position: relative; z-index: 1; }
+.aspb-beam {
+  position: absolute; z-index: 0; pointer-events: none; width: 0; height: 0;
+  left: calc(max(0px, (100% - var(--container-max)) / 2) + var(--gutter) + 16px);
+  top: -44px;
+}
+.aspb-beam::before {
+  content: ""; position: absolute; left: -150vmax; top: -150vmax; width: 300vmax; height: 300vmax;
+  background: conic-gradient(from 0deg,
+    rgba(238,197,126,0) 0deg, rgba(238,197,126,.10) 5deg, rgba(238,197,126,.17) 10deg, rgba(238,197,126,.06) 17deg, rgba(238,197,126,0) 26deg,
+    rgba(238,197,126,0) 120deg, rgba(238,197,126,.10) 125deg, rgba(238,197,126,.17) 130deg, rgba(238,197,126,.06) 137deg, rgba(238,197,126,0) 146deg,
+    rgba(238,197,126,0) 240deg, rgba(238,197,126,.10) 245deg, rgba(238,197,126,.17) 250deg, rgba(238,197,126,.06) 257deg, rgba(238,197,126,0) 266deg,
+    rgba(238,197,126,0) 360deg);
+  -webkit-mask: radial-gradient(circle, #000 0, rgba(0,0,0,.75) 12%, transparent 42%);
+          mask: radial-gradient(circle, #000 0, rgba(0,0,0,.75) 12%, transparent 42%);
+  animation: aspb-sweep 40s linear infinite;
+}
+.aspb-beam::after {
+  content: ""; position: absolute; left: -90px; top: -90px; width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(238,197,126,.18), rgba(238,197,126,0) 70%);
+}
+@keyframes aspb-sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .aspb-beam::before { animation: none; transform: rotate(140deg); }
+}
+@media (max-width: 640px) { .aspb-beam { top: -68px; left: calc(var(--gutter) + 16px); } }
