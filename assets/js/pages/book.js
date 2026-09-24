@@ -10,18 +10,12 @@
   } = window.AnchorSolasDesignSystem_897ee1;
   const TO = 'admin@anchorsolaspb.com';
   function buildMail(f) {
-    const lines = ['Name: ' + f.name, 'Email: ' + f.email, 'Event type: ' + (f.type || 'Not specified'), 'Date: ' + (f.date || 'Not specified'), 'Performance: ' + f.perf, 'Budget: S$' + f.budget[0].toLocaleString() + ' to S$' + f.budget[1].toLocaleString() + (f.budget[1] >= 5000 ? '+' : ''), 'Remarks: ' + (f.remarks || 'None'), 'Keep posted about band news: ' + (f.news ? 'Yes' : 'No')];
+    const lines = ['Name: ' + f.name, 'Email: ' + f.email, 'Event type: ' + (f.type || 'Not specified'), 'Date: ' + (f.date || 'Not specified'), 'Performance: ' + f.perf, 'Budget: S$' + f.budget[0].toLocaleString() + ' to S$' + f.budget[1].toLocaleString() + (f.budget[1] >= 5000 ? '+' : ''), 'Remarks: ' + (f.remarks || 'None')];
     const subject = 'Booking enquiry: ' + (f.type || 'Performance') + (f.date ? ' on ' + f.date : '') + ' (' + f.name + ')';
     return 'mailto:' + TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
   }
   function openMail(href) {
-    const a = document.createElement('a');
-    a.href = href;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    window.location.href = href;
   }
   function BookScreen({
     toast
@@ -35,8 +29,7 @@
       date: '',
       perf: 'Solo Bagpiper Performance',
       budget: [500, 1500],
-      remarks: '',
-      news: false
+      remarks: ''
     });
     const [href, setHref] = React.useState('');
     const up = k => v => setF(s => ({
@@ -64,10 +57,10 @@
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '96px var(--gutter)',
+        padding: 'var(--sec-y) var(--gutter)',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,380px),1fr))',
-        gap: 64
+        gap: 'clamp(40px,6vw,64px)'
       }
     }, React.createElement("div", {
       style: {
@@ -97,8 +90,6 @@
       }
     }, React.createElement("a", {
       href: 'mailto:' + TO,
-      target: "_blank",
-      rel: "noopener",
       style: {
         display: 'flex',
         gap: 12,
@@ -112,22 +103,10 @@
       style: {
         color: 'var(--beacon-300)'
       }
-    }), TO), React.createElement("span", {
-      style: {
-        display: 'flex',
-        gap: 12,
-        alignItems: 'center'
-      }
-    }, React.createElement(Icon, {
-      name: "map-pin",
-      size: 18,
-      style: {
-        color: 'var(--beacon-300)'
-      }
-    }), "Singapore"))), React.createElement("div", {
+    }), TO))), React.createElement("div", {
       style: {
         background: 'var(--surface-card)',
-        padding: 40,
+        padding: 'clamp(24px,4vw,40px)',
         display: 'flex',
         flexDirection: 'column',
         gap: 22
@@ -155,8 +134,6 @@
       }
     }, "Your email app should have opened with the enquiry filled in. Press send there to reach the band."), React.createElement("a", {
       href: href,
-      target: "_blank",
-      rel: "noopener",
       style: {
         font: '600 12px/1 var(--font-sans)',
         letterSpacing: '.14em',
@@ -230,10 +207,6 @@
       placeholder: "Venue, timings, any tunes you'd like",
       value: f.remarks,
       onChange: ev('remarks')
-    }), React.createElement(Checkbox, {
-      label: "Keep me posted about band news",
-      checked: f.news,
-      onChange: up('news')
     }), React.createElement(Button, {
       size: "lg",
       variant: "primary",

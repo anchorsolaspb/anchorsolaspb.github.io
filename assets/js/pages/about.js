@@ -43,10 +43,11 @@
         color: 'var(--navy-800)'
       }
     }, "About ", React.createElement("em", null, "Anchor Solas."))), React.createElement("div", {
+      className: "aspb-stack",
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '0 var(--gutter) 96px',
+        padding: '0 var(--gutter) var(--sec-y)',
         display: 'grid',
         gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
         gap: 64,
@@ -62,7 +63,7 @@
       }
     }, React.createElement(Eyebrow, null, "About Us"), React.createElement(Body, {
       style: {
-        fontSize: 24,
+        fontSize: 'clamp(20px,2.4vw,24px)',
         lineHeight: 1.5,
         color: 'var(--navy-800)'
       }
@@ -90,9 +91,10 @@
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '96px var(--gutter)'
+        padding: 'var(--sec-y) var(--gutter)'
       }
     }, React.createElement("div", {
+      className: "aspb-identity",
       style: {
         display: 'grid',
         gridTemplateColumns: 'minmax(0,1fr) auto',
@@ -123,6 +125,7 @@
         display: 'block'
       }
     }))), React.createElement("div", {
+      className: "aspb-words",
       style: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -136,7 +139,7 @@
       }
     }, React.createElement("div", {
       style: {
-        font: '300 64px/1 var(--font-serif)',
+        font: '300 clamp(48px,7vw,64px)/1 var(--font-serif)',
         fontStyle: i ? 'italic' : 'normal',
         color: i ? 'var(--beacon-300)' : 'var(--paper)',
         marginBottom: 20
@@ -144,6 +147,7 @@
     }, w), React.createElement(Body, {
       inverse: true
     }, t)))))), React.createElement(Section, null, React.createElement("div", {
+      className: "aspb-stack",
       style: {
         display: 'grid',
         gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
@@ -187,7 +191,7 @@
       style: {
         maxWidth: 'var(--container-narrow)',
         margin: '0 auto',
-        padding: '112px var(--gutter)',
+        padding: 'calc(var(--sec-y) + 16px) var(--gutter)',
         textAlign: 'center'
       }
     }, React.createElement(Eyebrow, null, "What we do · Our Vision"), React.createElement(Body, {
@@ -205,7 +209,7 @@
       style: {
         display: 'inline-block',
         border: '2px solid var(--navy-800)',
-        padding: '28px 40px',
+        padding: 'clamp(20px,4vw,28px) clamp(20px,5vw,40px)',
         marginTop: 24
       }
     }, React.createElement("div", {
@@ -218,6 +222,7 @@
       style: {
         display: 'flex',
         gap: 12,
+        flexWrap: 'wrap',
         justifyContent: 'center',
         marginTop: 48
       }

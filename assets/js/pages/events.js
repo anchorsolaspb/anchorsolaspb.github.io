@@ -22,7 +22,7 @@
     }, React.createElement(Eyebrow, null, "Season 2026"), React.createElement("h1", {
       style: {
         margin: '20px 0 0',
-        font: '300 72px/1.02 var(--font-serif)',
+        font: '300 clamp(52px,8vw,72px)/1.02 var(--font-serif)',
         letterSpacing: '-.02em',
         color: 'var(--navy-800)'
       }
@@ -40,6 +40,7 @@
       style: {
         display: 'flex',
         gap: 8,
+        flexWrap: 'wrap',
         padding: '24px 0'
       }
     }, ['All', 'Performances', 'Competitions'].map(t => React.createElement(Tag, {
@@ -47,6 +48,7 @@
       selected: f === t,
       onClick: () => setF(t)
     }, t))), tab !== 'Results' && list.length ? React.createElement("div", {
+      className: "aspb-events-list",
       style: {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))',
@@ -63,7 +65,7 @@
         borderBottom: '1px solid var(--border-hairline)',
         borderLeft: i % 2 ? '1px solid var(--border-hairline)' : 'none',
         display: 'grid',
-        gridTemplateColumns: '88px 1fr',
+        gridTemplateColumns: 'clamp(64px,12vw,88px) minmax(0,1fr)',
         gap: 20
       }
     }, React.createElement("div", null, React.createElement("div", {
@@ -104,14 +106,16 @@
       }
     }, e.day)), React.createElement("div", {
       style: {
-        font: '400 28px/1.15 var(--font-serif)',
+        font: '400 clamp(24px,3vw,28px)/1.15 var(--font-serif)',
         color: 'var(--navy-800)'
       }
     }, e.t), React.createElement("div", {
       style: {
         display: 'flex',
-        gap: 18,
-        font: '400 14px/1 var(--font-sans)',
+        flexWrap: 'wrap',
+        rowGap: 10,
+        columnGap: 18,
+        font: '400 14px/1.3 var(--font-sans)',
         color: 'var(--text-muted)'
       }
     }, React.createElement("span", {

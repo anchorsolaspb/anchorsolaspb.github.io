@@ -149,12 +149,32 @@
   function Footer({
     go
   }) {
+    const L = {
+      font: '400 14px/2 var(--font-sans)',
+      color: 'var(--paper)',
+      textDecoration: 'none',
+      cursor: 'pointer',
+      display: 'block',
+      width: 'fit-content'
+    };
+    const H = ({
+      children
+    }) => React.createElement("div", {
+      style: {
+        font: '600 11px/1 var(--font-sans)',
+        letterSpacing: '.24em',
+        color: 'var(--beacon-300)',
+        marginBottom: 16
+      }
+    }, children);
     return React.createElement("footer", {
+      className: "aspb-footer",
       style: {
         background: 'var(--navy-900)',
         color: 'var(--navy-200)'
       }
     }, React.createElement("div", {
+      className: "aspb-footer-grid",
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
@@ -163,36 +183,53 @@
         gridTemplateColumns: '2fr 1fr 1fr 1fr',
         gap: 32
       }
-    }, React.createElement("div", null, React.createElement(Logo, {
+    }, React.createElement("div", {
+      className: "aspb-footer-logo"
+    }, React.createElement("a", {
+      onClick: () => go('home'),
+      style: {
+        cursor: 'pointer',
+        display: 'inline-block'
+      },
+      "aria-label": "Home"
+    }, React.createElement(Logo, {
       variant: "stacked",
       color: "white",
       height: 120,
       basePath: A,
       src: res(A + 'logo-stacked-white.png')
-    })), [['Band', ['About', 'Events', 'Book Us']], ['Contact', ['admin@anchorsolaspb.com', 'Singapore']], ['Follow', ['Instagram', 'Facebook', 'YouTube']]].map(([h, l]) => React.createElement("div", {
-      key: h
-    }, React.createElement("div", {
-      style: {
-        font: '600 11px/1 var(--font-sans)',
-        letterSpacing: '.24em',
-        color: 'var(--beacon-300)',
-        marginBottom: 16
-      }
-    }, h.toUpperCase()), l.map(x => React.createElement("div", {
-      key: x,
-      style: {
-        font: '400 14px/2 var(--font-sans)',
-        color: 'var(--paper)'
-      }
-    }, x))))), React.createElement("div", {
+    }))), React.createElement("div", null, React.createElement(H, null, "BAND"), [['about', 'About'], ['events', 'Events'], ['book', 'Book Us']].map(([k, l]) => React.createElement("a", {
+      key: k,
+      href: '#' + k,
+      onClick: e => {
+        e.preventDefault();
+        go(k);
+      },
+      style: L
+    }, l))), React.createElement("div", {
+      className: "aspb-footer-contact"
+    }, React.createElement(H, null, "CONTACT"), React.createElement("a", {
+      href: "mailto:admin@anchorsolaspb.com",
+      style: L
+    }, "admin@", React.createElement("wbr", null), "anchorsolaspb.com")), React.createElement("div", {
+      className: "aspb-footer-follow"
+    }, React.createElement(H, null, "FOLLOW"), React.createElement("a", {
+      href: "https://www.instagram.com/anchorsolas_pb/",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: L
+    }, "Instagram"))), React.createElement("div", {
+      className: "aspb-footer-bar",
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         padding: '20px var(--gutter)',
         borderTop: '1px solid var(--border-on-inverse)',
-        font: '400 12px/1 var(--font-sans)',
+        font: '400 12px/1.4 var(--font-sans)',
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        gap: 12,
+        flexWrap: 'wrap'
       }
     }, React.createElement("span", null, "© 2026 Anchor Solas Pipe Band"), React.createElement("span", {
       style: {
@@ -215,7 +252,7 @@
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '96px var(--gutter)',
+        padding: 'var(--sec-y) var(--gutter)',
         ...style
       }
     }, children));

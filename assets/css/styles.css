@@ -199,8 +199,30 @@ a:hover{color:var(--beacon-700)}
 ::selection{background:var(--beacon-300);color:var(--navy-900)}
 
 
-/* Phone layout: put the menu on its own row so every link fits */
+/* ---------- Responsive layout (phones and tablets) ---------- */
+:root { --sec-y: 96px; }
+@media (max-width: 900px) {
+  .aspb-events-list > div { padding: 28px 0 !important; border-left: none !important; }
+}
+@media (max-width: 820px) {
+  :root { --sec-y: 72px; }
+  .aspb-stack { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+  .aspb-footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .aspb-footer-logo { grid-column: 1 / -1; }
+}
 @media (max-width: 640px) {
+  :root { --sec-y: 56px; --gutter: 20px; }
+  /* Menu on its own row so every link fits */
   header > div { height: auto !important; flex-wrap: wrap; row-gap: 14px !important; padding-top: 14px !important; padding-bottom: 12px !important; }
   header nav { margin-left: 0 !important; width: 100%; justify-content: space-between; gap: 8px !important; }
+  .aspb-identity { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
+  .aspb-identity > div:last-child { width: 112px !important; height: 112px !important; order: -1; }
+  .aspb-words { grid-template-columns: minmax(0, 1fr) !important; }
+  .aspb-words > div { padding: 32px 0 0 !important; border-left: none !important; }
+  .aspb-words > div + div { margin-top: 32px; border-top: 1px solid var(--border-on-inverse); }
+}
+@media (max-width: 520px) {
+  .aspb-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+  .aspb-footer-follow { order: 2; }
+  .aspb-footer-contact { order: 3; grid-column: 1 / -1; }
 }

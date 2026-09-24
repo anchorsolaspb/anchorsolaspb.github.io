@@ -52,7 +52,7 @@
       }
     }, n), React.createElement("div", {
       style: {
-        font: '300 40px/1.05 var(--font-serif)',
+        font: '300 clamp(32px,4vw,40px)/1.05 var(--font-serif)',
         color: dark ? 'var(--paper)' : 'var(--navy-800)'
       }
     }, title), React.createElement("p", {
@@ -87,7 +87,8 @@
   function HomeScreen({
     go
   }) {
-    const next = EVENTS.find(e => !e.past);
+    const next = (window.EVENTS || []).find(e => !e.past);
+    const when = next && (next.day.includes('–') ? next.day : next.day + ' ' + next.d + ' ' + next.m[0] + next.m.slice(1).toLowerCase());
     return React.createElement(React.Fragment, null, React.createElement("section", {
       style: {
         background: 'var(--navy-800)',
@@ -97,7 +98,7 @@
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '96px var(--gutter) 104px',
+        padding: 'var(--sec-y) var(--gutter) calc(var(--sec-y) + 8px)',
         display: 'grid',
         gridTemplateColumns: 'minmax(0,1fr)',
         gap: 64
@@ -144,7 +145,7 @@
       style: {
         aspectRatio: '2353 / 1568'
       }
-    })))), React.createElement("div", {
+    })))), next && React.createElement("div", {
       style: {
         background: 'var(--beacon-500)'
       }
@@ -172,10 +173,10 @@
       }
     }), "NEXT UP", React.createElement("span", {
       style: {
-        font: '400 20px/1 var(--font-serif)',
+        font: '400 20px/1.3 var(--font-serif)',
         letterSpacing: 0
       }
-    }, next.t, " — ", next.day, " ", next.d, " ", next.m[0] + next.m.slice(1).toLowerCase(), ", ", next.p), React.createElement("span", {
+    }, next.t, ", ", when, ", ", next.p), React.createElement("span", {
       style: {
         marginLeft: 'auto'
       }
@@ -191,13 +192,13 @@
     }, React.createElement("div", null, React.createElement(Eyebrow, null, "Find your way"), React.createElement("h2", {
       style: {
         margin: '16px 0 0',
-        font: '300 48px/1.1 var(--font-serif)',
+        font: '300 clamp(34px,5vw,48px)/1.1 var(--font-serif)',
         color: 'var(--navy-800)'
       }
     }, "Where would you like to go?"))), React.createElement("div", {
       style: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))',
+        gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,210px),1fr))',
         gap: 24
       }
     }, React.createElement(Route, {
