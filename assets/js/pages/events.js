@@ -47,6 +47,7 @@
       }
     }, list.map((e, i) => React.createElement("div", {
       key: e.id,
+      className: "aspb-ev-card",
       onClick: () => setSel(e),
       style: {
         cursor: 'pointer',
@@ -125,19 +126,26 @@
     }, React.createElement(Icon, {
       name: "map-pin",
       size: 15
-    }), e.p)), e.images.length > 0 && React.createElement("img", {
+    }), e.p)), e.images.length > 0 && React.createElement("div", {
+      className: "aspb-ev-media",
+      style: {
+        width: '100%',
+        maxWidth: 560,
+        marginTop: 8,
+        overflow: 'hidden',
+        background: 'var(--navy-900)'
+      }
+    }, React.createElement("img", {
       src: e.images[0],
       alt: e.t,
       loading: "lazy",
       style: {
         display: 'block',
         width: '100%',
-        maxWidth: 560,
         height: 'clamp(150px,20vw,220px)',
-        objectFit: 'cover',
-        marginTop: 8
+        objectFit: 'cover'
       }
-    }), (e.desc || e.images.length > 0) && React.createElement("span", {
+    })), (e.desc || e.images.length > 0) && React.createElement("span", {
       className: "aspb-link",
       style: {
         font: '600 11px/1 var(--font-sans)',

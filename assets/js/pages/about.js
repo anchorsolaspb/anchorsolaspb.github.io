@@ -68,8 +68,8 @@
         color: 'var(--navy-800)'
       }
     }, "Founded in 2026, Anchor Solas Pipe Band is the official alumni pipe band of the 64th Boys' Brigade Singapore."), React.createElement(Body, null, "The band was established as a sustainability initiative to safeguard and advance the piping and drumming tradition of the 64th Boys' Brigade. By uniting passionate alumni, Anchor Solas Pipe Band provides a long-term platform for past and present members to continue playing, performing, and giving back to the community.")), React.createElement("div", {
+      className: "aspb-frame",
       style: {
-        border: '2px solid var(--navy-800)',
         padding: 14
       }
     }, React.createElement(Photo, {

@@ -95,7 +95,10 @@ function App() {
     page: page,
     go: go,
     inverse: page === 'home' || page === 'book'
-  }), React.createElement("main", null, React.createElement(S, {
+  }), React.createElement("main", {
+    key: page,
+    className: "aspb-page"
+  }, React.createElement(S, {
     go: go,
     toast: toast
   })), React.createElement(Footer, {

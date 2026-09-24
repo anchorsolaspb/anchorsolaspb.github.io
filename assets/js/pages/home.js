@@ -134,9 +134,9 @@
       variant: "inverse",
       onClick: () => go('about')
     }, "Who we are"))), React.createElement("div", {
+      className: "aspb-frame aspb-frame--light",
       style: {
-        border: '2px solid var(--border-on-inverse)',
-        padding: 10,
+        padding: 12,
         width: '100%',
         maxWidth: 560,
         justifySelf: 'end'

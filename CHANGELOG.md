@@ -1,5 +1,10 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.5.0 (24 Sep 2026)
+- Gold corner brackets frame the home page photo and the About page photo, replacing the plain outlines.
+- Each page fades in softly when you switch pages.
+- Event card photos zoom in slightly and brighten when you hover over the card.
+
 ## v1.4.0 (24 Sep 2026)
 - Removed the scroll anchor from the left edge. The next-page button at the bottom of each page stays.
 - Compact footer: smaller logo (the original stacked ASPB logo), tighter spacing and smaller text. The Band, Contact and Follow labels stay.

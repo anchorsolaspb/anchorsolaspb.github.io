@@ -265,3 +265,36 @@ a:hover{color:var(--beacon-700)}
 @media (prefers-reduced-motion: reduce) { .aspb-next { transition: none; } }
 /* Leave room at the very bottom for the next-page button */
 .aspb-footer-bar { padding-bottom: 64px !important; }
+
+/* ---------- Photo corner brackets ----------
+   Gold L-shaped corners frame the hero and About photos. */
+.aspb-frame {
+  --c: var(--beacon-500); --l: 26px; --w: 2px;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--l) var(--w),
+    linear-gradient(var(--c), var(--c)) top left / var(--w) var(--l),
+    linear-gradient(var(--c), var(--c)) top right / var(--l) var(--w),
+    linear-gradient(var(--c), var(--c)) top right / var(--w) var(--l),
+    linear-gradient(var(--c), var(--c)) bottom left / var(--l) var(--w),
+    linear-gradient(var(--c), var(--c)) bottom left / var(--w) var(--l),
+    linear-gradient(var(--c), var(--c)) bottom right / var(--l) var(--w),
+    linear-gradient(var(--c), var(--c)) bottom right / var(--w) var(--l);
+  background-repeat: no-repeat;
+}
+.aspb-frame--light { --c: var(--beacon-300); }
+@media (max-width: 640px) { .aspb-frame { --l: 20px; } }
+
+/* ---------- Page fade-in ---------- */
+@keyframes aspb-fade { from { opacity: 0; } to { opacity: 1; } }
+.aspb-page { animation: aspb-fade 240ms var(--ease-out); }
+
+/* ---------- Event card photo hover ---------- */
+.aspb-ev-media img { transition: transform 600ms var(--ease-out), filter 400ms var(--ease-out); }
+@media (hover: hover) {
+  .aspb-ev-card:hover .aspb-ev-media img { transform: scale(1.04); filter: brightness(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aspb-page { animation: none; }
+  .aspb-ev-media img { transition: none; }
+  .aspb-ev-card:hover .aspb-ev-media img { transform: none; }
+}
