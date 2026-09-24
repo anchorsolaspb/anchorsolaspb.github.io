@@ -1,7 +1,7 @@
 content:
   - name: events
     label: Events
-    description: Events on the Events tab and the "next event" on the homepage. Past events move to the Past tab by themselves.
+    description: Each entry appears on the Events page once its last day has passed. Events go under Past Events and competitions go under Past Competitions.
     type: file
     path: events.json
     format: json
@@ -38,11 +38,15 @@ content:
             label: Venue
             type: string
           - name: type
-            label: Type
+            label: Show under
             type: select
             default: Performance
             options:
-              values: [Performance, Competition]
+              values:
+                - name: Performance
+                  label: Past Events
+                - name: Competition
+                  label: Past Competitions
           - name: status
             label: Badge text
             description: Short label on the event card, for example Confirmed, Overseas or Charity
