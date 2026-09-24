@@ -11,10 +11,9 @@
     go,
     toast
   }) {
-    const [tab, setTab] = React.useState('Past');
-    const [f, setF] = React.useState('All');
+    const [tab, setTab] = React.useState('Past Events');
     const [sel, setSel] = React.useState(null);
-    const list = EVENTS.filter(e => tab === 'Past' === !!e.past).filter(e => f === 'All' || e.type === f || f === 'Performances' && e.type === 'Performance' || f === 'Competitions' && e.type === 'Competition');
+    const list = (window.EVENTS || []).filter(e => e.past && tab === 'Past Competitions' === (e.type === 'Competition'));
     return React.createElement(React.Fragment, null, React.createElement(Section, {
       style: {
         paddingBottom: 40
@@ -33,28 +32,18 @@
         padding: '0 var(--gutter)'
       }
     }, React.createElement(Tabs, {
-      tabs: ['Past', 'Results'],
+      tabs: ['Past Events', 'Past Competitions'],
       value: tab,
       onChange: setTab
-    }), React.createElement("div", {
-      style: {
-        display: 'flex',
-        gap: 8,
-        flexWrap: 'wrap',
-        padding: '24px 0'
-      }
-    }, ['All', 'Performances', 'Competitions'].map(t => React.createElement(Tag, {
-      key: t,
-      selected: f === t,
-      onClick: () => setF(t)
-    }, t))), tab !== 'Results' && list.length ? React.createElement("div", {
+    }), list.length ? React.createElement("div", {
       className: "aspb-events-list",
       style: {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))',
         gap: 0,
         borderTop: '2px solid var(--navy-800)',
-        marginBottom: 96
+        marginBottom: 96,
+        marginTop: 32
       }
     }, list.map((e, i) => React.createElement("div", {
       key: e.id,
