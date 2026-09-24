@@ -25,6 +25,12 @@
       "time": "7.30 pm",
       "venue": "Tanglin Club, Singapore",
       "type": "Performance",
+      "description": "Our very first performance! ⚓✨\nWe are grateful to have been part of an evening dedicated to supporting the Cerebral Palsy Alliance Singapore (CPAS) - Peranakan Night at Tanglin Club.",
+      "images": [
+        "assets/images/events/whatsapp-image-2026-09-21-at-125543-2.jpeg",
+        "assets/images/events/whatsapp-image-2026-09-21-at-125542-2.jpeg",
+        "assets/images/events/whatsapp-image-2026-09-21-at-125543-1.jpeg"
+      ],
       "status": "Charity",
       "colour": "neutral"
     }
