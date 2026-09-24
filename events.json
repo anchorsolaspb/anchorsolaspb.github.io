@@ -35,11 +35,5 @@
     "type": "Competition",
     "status": "Festival",
     "colour": "neutral"
-  },
-  {
-    "title": "test event",
-    "date": "2026-09-25",
-    "type": "Performance",
-    "colour": "neutral"
   }
 ]
