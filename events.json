@@ -1,4 +1,4 @@
-[
+{ "events":[
   {
     "title": "BB 17A Inauguration Ceremony",
     "date": "2026-09-27",
@@ -36,4 +36,4 @@
     "status": "Festival",
     "colour": "neutral"
   }
-]
+]}
