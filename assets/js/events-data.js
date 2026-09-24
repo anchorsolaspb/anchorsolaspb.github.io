@@ -16,7 +16,8 @@
   function convert(list) {
     var today = new Date(); today.setHours(0, 0, 0, 0);
     var out = [];
-    (Array.isArray(list) ? list : []).forEach(function (e, i) {
+    var items = Array.isArray(list) ? list : (list && Array.isArray(list.events) ? list.events : []);
+    items.forEach(function (e, i) {
       var start = parse(e.date);
       if (!start || !e.title) return;
       var end = parse(e.end_date);
