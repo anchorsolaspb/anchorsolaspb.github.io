@@ -11,7 +11,7 @@
     go,
     toast
   }) {
-    const [tab, setTab] = React.useState('Upcoming');
+    const [tab, setTab] = React.useState('Past');
     const [f, setF] = React.useState('All');
     const [sel, setSel] = React.useState(null);
     const list = EVENTS.filter(e => tab === 'Past' === !!e.past).filter(e => f === 'All' || e.type === f || f === 'Performances' && e.type === 'Performance' || f === 'Competitions' && e.type === 'Competition');
@@ -33,7 +33,7 @@
         padding: '0 var(--gutter)'
       }
     }, React.createElement(Tabs, {
-      tabs: ['Upcoming', 'Past', 'Results'],
+      tabs: ['Past', 'Results'],
       value: tab,
       onChange: setTab
     }), React.createElement("div", {

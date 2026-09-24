@@ -133,6 +133,7 @@
       }
     }, items.map(([k, l]) => React.createElement("a", {
       key: k,
+      className: page === k ? '' : 'aspb-navlink',
       onClick: () => go(k),
       style: {
         cursor: 'pointer',
@@ -201,6 +202,7 @@
     }))), React.createElement("div", null, React.createElement(H, null, "BAND"), [['about', 'About'], ['events', 'Events'], ['book', 'Book Us']].map(([k, l]) => React.createElement("a", {
       key: k,
       href: '#' + k,
+      className: "aspb-link",
       onClick: e => {
         e.preventDefault();
         go(k);
@@ -210,6 +212,7 @@
       className: "aspb-footer-contact"
     }, React.createElement(H, null, "CONTACT"), React.createElement("a", {
       href: "mailto:admin@anchorsolaspb.com",
+      className: "aspb-link",
       style: L
     }, "admin@", React.createElement("wbr", null), "anchorsolaspb.com")), React.createElement("div", {
       className: "aspb-footer-follow"
@@ -217,6 +220,7 @@
       href: "https://www.instagram.com/anchorsolas_pb/",
       target: "_blank",
       rel: "noopener noreferrer",
+      className: "aspb-link",
       style: L
     }, "Instagram"))), React.createElement("div", {
       className: "aspb-footer-bar",

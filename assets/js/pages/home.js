@@ -87,28 +87,28 @@
   function HomeScreen({
     go
   }) {
-    const next = (window.EVENTS || []).find(e => !e.past);
-    const when = next && (next.day.includes('–') ? next.day : next.day + ' ' + next.d + ' ' + next.m[0] + next.m.slice(1).toLowerCase());
     return React.createElement(React.Fragment, null, React.createElement("section", {
       style: {
         background: 'var(--navy-800)',
         color: 'var(--paper)'
       }
     }, React.createElement("div", {
+      className: "aspb-stack",
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         padding: 'var(--sec-y) var(--gutter) calc(var(--sec-y) + 8px)',
         display: 'grid',
-        gridTemplateColumns: 'minmax(0,1fr)',
-        gap: 64
+        gridTemplateColumns: 'minmax(0,1.15fr) minmax(0,1fr)',
+        gap: 'clamp(40px,5vw,72px)',
+        alignItems: 'center'
       }
     }, React.createElement("div", null, React.createElement(Eyebrow, {
       inverse: true
     }, "Alumni pipe band of the 64th Boys' Brigade Singapore"), React.createElement("h1", {
       style: {
         margin: '28px 0 0',
-        font: '300 clamp(52px,6.4vw,92px)/1.0 var(--font-serif)',
+        font: '300 clamp(48px,5.4vw,80px)/1.0 var(--font-serif)',
         letterSpacing: '-.02em'
       }
     }, "Anchored in sound,", React.createElement("br", null), React.createElement("em", null, "bright in spirit!")), React.createElement("p", {
@@ -136,7 +136,10 @@
     }, "Who we are"))), React.createElement("div", {
       style: {
         border: '2px solid var(--border-on-inverse)',
-        padding: 12
+        padding: 10,
+        width: '100%',
+        maxWidth: 560,
+        justifySelf: 'end'
       }
     }, React.createElement(Photo, {
       h: "auto",
@@ -145,42 +148,7 @@
       style: {
         aspectRatio: '2353 / 1568'
       }
-    })))), next && React.createElement("div", {
-      style: {
-        background: 'var(--beacon-500)'
-      }
-    }, React.createElement("div", {
-      onClick: () => go('events'),
-      style: {
-        cursor: 'pointer',
-        maxWidth: 'var(--container-max)',
-        margin: '0 auto',
-        padding: '18px var(--gutter)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 24,
-        flexWrap: 'wrap',
-        font: '600 12px/1 var(--font-sans)',
-        letterSpacing: '.2em',
-        color: 'var(--navy-950)'
-      }
-    }, React.createElement("span", {
-      style: {
-        width: 8,
-        height: 8,
-        borderRadius: '50%',
-        background: 'var(--navy-950)'
-      }
-    }), "NEXT UP", React.createElement("span", {
-      style: {
-        font: '400 20px/1.3 var(--font-serif)',
-        letterSpacing: 0
-      }
-    }, next.t, ", ", when, ", ", next.p), React.createElement("span", {
-      style: {
-        marginLeft: 'auto'
-      }
-    }, "ALL EVENTS →"))), React.createElement(Section, null, React.createElement("div", {
+    })))), React.createElement(Section, null, React.createElement("div", {
       style: {
         display: 'flex',
         justifyContent: 'space-between',

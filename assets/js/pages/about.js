@@ -76,14 +76,14 @@
       h: 380,
       src: P + 'festival-trophies.png',
       pos: "50% 75%",
-      label: "Band on stage at the 19th Pipes and Drums Festival"
+      label: "64th BB Pipe Band at the 19th Pipes and Drums Festival"
     }), React.createElement("div", {
       style: {
         font: '400 12px/1.4 var(--font-sans)',
         color: 'var(--text-muted)',
         paddingTop: 12
       }
-    }, "19th Pipes and Drums Festival"))), React.createElement("section", {
+    }, "64th BB Pipe Band at the 19th Pipes and Drums Festival"))), React.createElement("section", {
       style: {
         background: 'var(--navy-800)'
       }

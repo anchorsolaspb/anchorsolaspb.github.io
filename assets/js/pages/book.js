@@ -103,7 +103,9 @@
       style: {
         color: 'var(--beacon-300)'
       }
-    }), TO))), React.createElement("div", {
+    }), React.createElement("span", {
+      className: "aspb-link"
+    }, TO)))), React.createElement("div", {
       style: {
         background: 'var(--surface-card)',
         padding: 'clamp(24px,4vw,40px)',
@@ -134,7 +136,9 @@
       }
     }, "Your email app should have opened with the enquiry filled in. Press send there to reach the band."), React.createElement("a", {
       href: href,
+      className: "aspb-link",
       style: {
+        textDecoration: 'none',
         font: '600 12px/1 var(--font-sans)',
         letterSpacing: '.14em',
         textTransform: 'uppercase',
