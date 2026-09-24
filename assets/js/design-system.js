@@ -888,7 +888,7 @@ function Radio({
       style: {
         display: 'inline-flex',
         gap: 10,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         cursor: 'pointer'
       }
     }, /*#__PURE__*/React.createElement("input", {
@@ -910,6 +910,8 @@ function Radio({
       style: {
         width: 20,
         height: 20,
+        flex: 'none',
+        marginTop: 1,
         borderRadius: '50%',
         border: '1.5px solid var(--navy-800)',
         display: 'grid',

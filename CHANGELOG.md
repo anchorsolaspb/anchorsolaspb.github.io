@@ -1,5 +1,8 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.5.2 (24 Sep 2026)
+- Booking form: the round buttons next to each performance option keep their full size on phones instead of being squashed when the option text wraps onto two lines. They also line up with the first line of text.
+
 ## v1.5.1 (24 Sep 2026)
 - Link preview image renamed to share-preview-2.jpg so WhatsApp, Facebook and preview sites fetch the new crop with all three pipers instead of a cached copy.
 
