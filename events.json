@@ -27,16 +27,6 @@
       "type": "Performance",
       "status": "Charity",
       "colour": "neutral"
-    },
-    {
-      "title": "19th Pipes and Drums Festival",
-      "date": "2025-11-21",
-      "end_date": "2025-11-22",
-      "time": "Two days",
-      "venue": "Christ Church Secondary School, Singapore",
-      "type": "Competition",
-      "status": "Festival",
-      "colour": "neutral"
     }
   ]
 }
