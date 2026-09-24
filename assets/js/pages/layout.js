@@ -220,49 +220,6 @@
       }
     }, children));
   }
-  const EVENTS = [{
-    id: 1,
-    d: '27',
-    m: 'SEP',
-    day: 'Sunday',
-    t: 'BB 17A Inauguration Ceremony',
-    p: 'Christ Methodist Church, Singapore',
-    time: 'TBC',
-    type: 'Performance',
-    st: ['success', 'Confirmed']
-  }, {
-    id: 2,
-    d: '28',
-    m: 'DEC',
-    day: '28 Dec 2026 – 1 Jan 2027',
-    t: 'BBM Pipes and Drums Festival, BB Pesta 2026',
-    p: 'Penang, Malaysia',
-    time: 'Exact day TBC',
-    type: 'Performance',
-    st: ['accent', 'Overseas']
-  }, {
-    id: 3,
-    past: true,
-    d: '19',
-    m: 'SEP',
-    day: 'Saturday',
-    t: 'Peranakan Night for Cerebral Palsy Alliance Singapore',
-    p: 'Tanglin Club, Singapore',
-    time: '7.30 pm',
-    type: 'Performance',
-    st: ['neutral', 'Charity']
-  }, {
-    id: 4,
-    past: true,
-    d: '21',
-    m: 'NOV',
-    day: '21–22 Nov 2025',
-    t: '19th Pipes and Drums Festival',
-    p: 'Christ Church Secondary School, Singapore',
-    time: 'Two days',
-    type: 'Competition',
-    st: ['neutral', 'Festival']
-  }];
   const P = '../../assets/photos/';
   Object.assign(window, {
     res,
@@ -271,7 +228,6 @@
     Header,
     Footer,
     Section,
-    EVENTS,
     ASSETS: A,
     P
   });

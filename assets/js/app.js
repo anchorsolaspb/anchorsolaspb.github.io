@@ -41,4 +41,4 @@ function App() {
     onClose: () => setT(null)
   })));
 }
-ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App, null));
+window.loadEvents().then(() => ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App, null)));

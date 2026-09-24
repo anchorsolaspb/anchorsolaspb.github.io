@@ -198,3 +198,9 @@ a:hover{color:var(--beacon-700)}
 :focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
 ::selection{background:var(--beacon-300);color:var(--navy-900)}
 
+
+/* Phone layout: put the menu on its own row so every link fits */
+@media (max-width: 640px) {
+  header > div { height: auto !important; flex-wrap: wrap; row-gap: 14px !important; padding-top: 14px !important; padding-bottom: 12px !important; }
+  header nav { margin-left: 0 !important; width: 100%; justify-content: space-between; gap: 8px !important; }
+}
