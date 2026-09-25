@@ -161,12 +161,10 @@
     go
   }) {
     const L = {
-      font: '400 13px/1.9 var(--font-sans)',
+      font: '400 13px/1.6 var(--font-sans)',
       color: 'var(--paper)',
       textDecoration: 'none',
-      cursor: 'pointer',
-      display: 'block',
-      width: 'fit-content'
+      cursor: 'pointer'
     };
     const H = ({
       children
@@ -189,32 +187,22 @@
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '36px var(--gutter) 24px',
+        padding: '28px var(--gutter) 20px',
         display: 'grid',
-        gridTemplateColumns: 'minmax(0,1.4fr) repeat(3,minmax(0,1fr))',
-        gap: 24,
+        gridTemplateColumns: 'auto auto auto',
+        justifyContent: 'space-between',
+        gap: '20px 32px',
         alignItems: 'start'
       }
     }, React.createElement("div", {
-      className: "aspb-footer-logo"
-    }, React.createElement("a", {
-      href: "./",
-      onClick: e => {
-        e.preventDefault();
-        go('home');
-      },
+      className: "aspb-footer-band"
+    }, React.createElement(H, null, "BAND"), React.createElement("div", {
       style: {
-        cursor: 'pointer',
-        display: 'inline-block'
-      },
-      "aria-label": "Home"
-    }, React.createElement(Logo, {
-      variant: "stacked",
-      color: "white",
-      height: 72,
-      basePath: A,
-      src: res(A + 'logo-stacked-white.png')
-    }))), React.createElement("div", null, React.createElement(H, null, "BAND"), [['about', 'About'], ['events', 'Events'], ['book', 'Book Us']].map(([k, l]) => React.createElement("a", {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '4px 20px'
+      }
+    }, [['about', 'About'], ['events', 'Events'], ['book', 'Book Us']].map(([k, l]) => React.createElement("a", {
       key: k,
       href: '#' + k,
       className: "aspb-link",
@@ -223,7 +211,7 @@
         go(k);
       },
       style: L
-    }, l))), React.createElement("div", {
+    }, l)))), React.createElement("div", {
       className: "aspb-footer-contact"
     }, React.createElement(H, null, "CONTACT"), React.createElement("a", {
       href: "mailto:admin@anchorsolaspb.com",
@@ -231,18 +219,32 @@
       style: L
     }, "admin@", React.createElement("wbr", null), "anchorsolaspb.com")), React.createElement("div", {
       className: "aspb-footer-follow"
-    }, React.createElement(H, null, "FOLLOW"), React.createElement("a", {
+    }, React.createElement(H, null, "SOCIALS"), React.createElement("a", {
       href: "https://www.instagram.com/anchorsolas_pb/",
       target: "_blank",
       rel: "noopener noreferrer",
-      className: "aspb-link",
-      style: L
-    }, "Instagram"))), React.createElement("div", {
+      "aria-label": "Anchor Solas Pipe Band on Instagram",
+      title: "Instagram @anchorsolas_pb",
+      className: "aspb-social",
+      style: {
+        display: 'inline-grid',
+        placeItems: 'center',
+        width: 32,
+        height: 32,
+        marginTop: -4,
+        borderRadius: '50%',
+        color: 'var(--paper)',
+        border: '1px solid var(--border-on-inverse)'
+      }
+    }, React.createElement(Icon, {
+      name: "instagram",
+      size: 16
+    })))), React.createElement("div", {
       className: "aspb-footer-bar",
       style: {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
-        padding: '14px var(--gutter)',
+        padding: '12px var(--gutter)',
         borderTop: '1px solid var(--border-on-inverse)',
         font: '400 12px/1.4 var(--font-sans)',
         display: 'flex',

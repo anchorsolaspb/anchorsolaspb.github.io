@@ -1,5 +1,12 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.6.2 (25 Sep 2026)
+- Smaller footer. The logo is removed, the Band links sit on one line, and Follow is renamed Socials with an Instagram icon button instead of a text link.
+- Site moved to the custom domain www.anchorsolaspb.com. Link previews and page tags now use the new address. The old anchorsolaspb.github.io address redirects automatically.
+
+## v1.6.1 (25 Sep 2026)
+- Book Us page shows the band Instagram (@anchorsolas_pb) with its icon under the email address, at the same size. It opens the Instagram profile in a new tab.
+
 ## v1.6.0 (25 Sep 2026)
 - Booking form sends enquiries directly to admin@anchorsolaspb.com through Web3Forms. Visitors no longer need an email app.
 - The form shows "Sending…" while it sends, an "Enquiry sent" confirmation when it works, and an error with an email fallback if it fails.

@@ -220,11 +220,8 @@ a:hover{color:var(--beacon-700)}
   .aspb-words > div + div { margin-top: 32px; border-top: 1px solid var(--border-on-inverse); }
 }
 @media (max-width: 520px) {
-  .aspb-footer-grid { grid-template-columns: auto minmax(0,1fr) minmax(0,1fr) !important; gap: 18px 20px !important; padding-top: 28px !important; }
-  .aspb-footer-logo { grid-row: span 2; }
-  .aspb-footer-logo img { height: 60px !important; width: auto; }
-  .aspb-footer-follow { order: 2; }
-  .aspb-footer-contact { order: 3; grid-column: 2 / -1; }
+  .aspb-footer-grid { grid-template-columns: auto auto !important; justify-content: start !important; gap: 18px 40px !important; padding-top: 24px !important; }
+  .aspb-footer-band { grid-column: 1 / -1; }
 }
 
 /* ---------- Animated link underlines ---------- */
@@ -265,6 +262,8 @@ a:hover{color:var(--beacon-700)}
 @media (prefers-reduced-motion: reduce) { .aspb-next { transition: none; } }
 /* Leave room at the very bottom for the next-page button */
 .aspb-footer-bar { padding-bottom: 64px !important; }
+.aspb-social { transition: background var(--dur-base), color var(--dur-base), border-color var(--dur-base); }
+.aspb-social:hover, .aspb-social:focus-visible { background: var(--beacon-500); color: var(--navy-950) !important; border-color: var(--beacon-500) !important; }
 
 /* ---------- Photo corner brackets ----------
    Gold L-shaped corners frame the hero and About photos. */

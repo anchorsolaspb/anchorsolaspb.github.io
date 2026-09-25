@@ -151,7 +151,26 @@
       }
     }), React.createElement("span", {
       className: "aspb-link"
-    }, TO)))), React.createElement("div", {
+    }, TO)), React.createElement("a", {
+      href: "https://www.instagram.com/anchorsolas_pb/",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: 'flex',
+        gap: 12,
+        alignItems: 'center',
+        color: 'inherit',
+        textDecoration: 'none'
+      }
+    }, React.createElement(Icon, {
+      name: "instagram",
+      size: 18,
+      style: {
+        color: 'var(--beacon-300)'
+      }
+    }), React.createElement("span", {
+      className: "aspb-link"
+    }, "@anchorsolas_pb")))), React.createElement("div", {
       style: {
         background: 'var(--surface-card)',
         padding: 'clamp(24px,4vw,40px)',
