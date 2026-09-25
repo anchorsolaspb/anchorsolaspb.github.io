@@ -1,8 +1,22 @@
 media:
-  input: assets/images/events
-  output: assets/images/events
-  extensions: [jpg, jpeg, png, webp]
-  rename: safe
+  - name: events
+    label: Event photos
+    input: assets/images/events
+    output: assets/images/events
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: hero
+    label: Home slideshow photos
+    input: assets/images/hero
+    output: assets/images/hero
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: instagram
+    label: Instagram post images
+    input: assets/images/instagram
+    output: assets/images/instagram
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
 content:
   - name: events
     label: Events
@@ -61,6 +75,7 @@ content:
             description: Optional. The first photo also shows on the event card. Photos under 1 MB load fastest.
             type: image
             options:
+              media: events
               multiple:
                 max: 12
           - name: status
@@ -79,3 +94,62 @@ content:
                   label: Gold (highlight)
                 - name: neutral
                   label: Grey (general)
+  - name: hero
+    label: Home slideshow
+    description: Photos that slide past on the home page, in this order. Drag to reorder. Landscape photos work best.
+    type: file
+    path: hero.json
+    format: json
+    fields:
+      - name: slides
+        label: false
+        type: object
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options:
+              media: hero
+          - name: alt
+            label: Short description
+            description: What the photo shows, for screen readers. For example, Pipers performing at a wedding
+            type: string
+            required: true
+  - name: instagram
+    label: Instagram posts
+    description: Up to 3 posts shown as cards beside the Events heading. The first post sits on top. Leave empty to hide the cards.
+    type: file
+    path: instagram.json
+    format: json
+    fields:
+      - name: posts
+        label: false
+        type: object
+        list:
+          max: 3
+          collapsible:
+            collapsed: true
+            summary: "{caption}"
+        fields:
+          - name: image
+            label: Post image
+            description: Save the photo from the post and upload it here. Square or portrait works best.
+            type: image
+            required: true
+            options:
+              media: instagram
+          - name: link
+            label: Post link
+            description: In Instagram, tap the three dots on the post, then Copy link, and paste it here
+            type: string
+            required: true
+          - name: caption
+            label: Short caption
+            description: A few words about the post, for your reference and for screen readers
+            type: string
