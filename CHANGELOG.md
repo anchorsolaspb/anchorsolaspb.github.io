@@ -1,5 +1,8 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.7.1 (25 Sep 2026)
+- Added robots.txt and sitemap.xml so Google can find and read the site on www.anchorsolaspb.com.
+
 ## v1.7.0 (25 Sep 2026)
 - Home page photo is now a slideshow that moves to the next photo every 5 seconds. It pauses on hover, has dots to jump between photos and can be swiped on phones. It stays still for visitors with reduced motion turned on.
 - Slideshow photos are edited in Pages CMS under Home slideshow.
