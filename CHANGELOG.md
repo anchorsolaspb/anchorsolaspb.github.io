@@ -1,5 +1,12 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.7.0 (25 Sep 2026)
+- Home page photo is now a slideshow that moves to the next photo every 5 seconds. It pauses on hover, has dots to jump between photos and can be swiped on phones. It stays still for visitors with reduced motion turned on.
+- Slideshow photos are edited in Pages CMS under Home slideshow.
+- Events page shows up to 3 Instagram posts as a small hand of cards beside the heading, with "Latest on" and the Instagram icon underneath. The cards fan out on hover and open the post on Instagram. They take no extra space, so the page is no longer.
+- Instagram posts are picked in Pages CMS under Instagram posts. The cards stay hidden until at least one post is added.
+- Pages CMS uploads are sorted into separate folders for event photos, slideshow photos and Instagram images.
+
 ## v1.6.2 (25 Sep 2026)
 - Smaller footer. The logo is removed, the Band links sit on one line, and Follow is renamed Socials with an Instagram icon button instead of a text link.
 - Site moved to the custom domain www.anchorsolaspb.com. Link previews and page tags now use the new address. The old anchorsolaspb.github.io address redirects automatically.

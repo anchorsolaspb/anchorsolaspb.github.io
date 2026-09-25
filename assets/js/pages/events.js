@@ -7,6 +7,45 @@
     Icon,
     Dialog
   } = window.AnchorSolasDesignSystem_897ee1;
+  const IG_PROFILE = 'https://www.instagram.com/anchorsolas_pb/';
+  function IgFan() {
+    const posts = (window.IG_POSTS || []).slice(0, 3);
+    if (!posts.length) return null;
+    return React.createElement("div", {
+      className: "aspb-ig"
+    }, React.createElement("div", {
+      className: 'aspb-hand' + (posts.length === 3 ? ' three' : '') + (posts.length === 1 ? ' one' : '')
+    }, posts.map((p, k) => React.createElement("a", {
+      key: k,
+      className: "aspb-card",
+      href: p.link || IG_PROFILE,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      "aria-label": 'Open Instagram post' + (p.caption ? ': ' + p.caption : '')
+    }, React.createElement("img", {
+      src: p.image,
+      alt: p.caption || 'Instagram post by Anchor Solas Pipe Band',
+      loading: "lazy"
+    }), React.createElement("span", {
+      className: "aspb-card-meta"
+    }, React.createElement(Icon, {
+      name: "instagram",
+      size: 9,
+      strokeWidth: 2
+    }), "anchorsolas_pb")))), React.createElement("a", {
+      className: "aspb-ig-label",
+      href: IG_PROFILE,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      "aria-label": "Latest on Instagram, open @anchorsolas_pb"
+    }, React.createElement("span", {
+      className: "aspb-link"
+    }, "Latest on"), React.createElement(Icon, {
+      name: "instagram",
+      size: 14,
+      strokeWidth: 2
+    })));
+  }
   function EventsScreen({
     go,
     toast
@@ -16,9 +55,10 @@
     const list = (window.EVENTS || []).filter(e => e.past && tab === 'Past Competitions' === (e.type === 'Competition'));
     return React.createElement(React.Fragment, null, React.createElement(Section, {
       style: {
-        paddingBottom: 40
+        paddingBottom: 40,
+        position: 'relative'
       }
-    }, React.createElement(Eyebrow, null, "Season 2026"), React.createElement("h1", {
+    }, React.createElement(IgFan, null), React.createElement(Eyebrow, null, "Season 2026"), React.createElement("h1", {
       style: {
         margin: '20px 0 0',
         font: '300 clamp(52px,8vw,72px)/1.02 var(--font-serif)',

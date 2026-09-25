@@ -57,4 +57,23 @@
       .then(function (list) { window.EVENTS = convert(list); })
       .catch(function (err) { console.warn('Could not load events.json', err); window.EVENTS = []; });
   };
+
+  // Home slideshow (hero.json) and Instagram posts (instagram.json), both edited in Pages CMS
+  function clean(v){ return typeof v==='string' && v.trim() ? (/^https?:\/\//.test(v.trim()) ? v.trim() : v.trim().replace(/^\/+/,'')) : ''; }
+  function getJson(url){
+    return fetch(url,{cache:'no-store'}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); });
+  }
+  function loadHero(){
+    return getJson('hero.json').then(function(d){
+      var list=Array.isArray(d)?d:(d&&Array.isArray(d.slides)?d.slides:[]);
+      window.HERO=list.map(function(x){return {image:clean(x&&x.image),alt:(x&&x.alt)||'Anchor Solas Pipe Band'}}).filter(function(x){return x.image});
+    }).catch(function(e){console.warn('Could not load hero.json',e);window.HERO=[];});
+  }
+  function loadInstagram(){
+    return getJson('instagram.json').then(function(d){
+      var list=Array.isArray(d)?d:(d&&Array.isArray(d.posts)?d.posts:[]);
+      window.IG_POSTS=list.map(function(x){return {image:clean(x&&x.image),link:clean(x&&x.link)||'https://www.instagram.com/anchorsolas_pb/',caption:(x&&x.caption)||''}}).filter(function(x){return x.image}).slice(0,3);
+    }).catch(function(e){console.warn('Could not load instagram.json',e);window.IG_POSTS=[];});
+  }
+  window.loadSiteData=function(){ return Promise.all([window.loadEvents(),loadHero(),loadInstagram()]); };
 })();

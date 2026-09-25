@@ -84,6 +84,85 @@
       }
     }))));
   }
+  function HeroCarousel() {
+    const slides = window.HERO && window.HERO.length ? window.HERO : [{
+      image: res(P + 'band-uniform-group.jpg'),
+      alt: 'Anchor Solas pipers and drummers in uniform'
+    }];
+    const n = slides.length;
+    const [i, setI] = React.useState(0);
+    const [paused, setPaused] = React.useState(false);
+    const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const touch = React.useRef(null);
+    React.useEffect(() => {
+      if (n < 2 || paused || reduce) return;
+      const t = setInterval(() => setI(x => (x + 1) % n), 5000);
+      return () => clearInterval(t);
+    }, [n, paused, reduce]);
+    const go = d => setI(x => (x + d + n) % n);
+    return React.createElement("div", {
+      className: "aspb-hero-car",
+      "aria-roledescription": "carousel",
+      "aria-label": "Band photos",
+      onMouseEnter: () => setPaused(true),
+      onMouseLeave: () => setPaused(false),
+      onFocus: () => setPaused(true),
+      onBlur: () => setPaused(false),
+      onTouchStart: e => {
+        touch.current = e.touches[0].clientX;
+      },
+      onTouchEnd: e => {
+        if (touch.current == null) return;
+        const dx = e.changedTouches[0].clientX - touch.current;
+        touch.current = null;
+        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+      },
+      style: {
+        position: 'relative',
+        overflow: 'hidden',
+        aspectRatio: '3 / 2',
+        background: 'var(--navy-900)'
+      }
+    }, React.createElement("div", {
+      className: "aspb-hero-track",
+      style: {
+        display: 'flex',
+        height: '100%',
+        transform: 'translateX(' + -i * 100 + '%)'
+      }
+    }, slides.map((s, k) => React.createElement("img", {
+      key: k,
+      src: s.image,
+      alt: s.alt,
+      "aria-hidden": k !== i,
+      loading: k === 0 ? 'eager' : 'lazy',
+      style: {
+        flex: '0 0 100%',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        display: 'block'
+      }
+    }))), n > 1 && React.createElement("div", {
+      className: "aspb-hero-dots",
+      style: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 12,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 8
+      }
+    }, slides.map((s, k) => React.createElement("button", {
+      key: k,
+      type: "button",
+      "aria-label": 'Show photo ' + (k + 1) + ' of ' + n,
+      "aria-current": k === i ? 'true' : undefined,
+      onClick: () => setI(k),
+      className: 'aspb-dot' + (k === i ? ' is-on' : '')
+    }))));
+  }
   function HomeScreen({
     go
   }) {
@@ -141,14 +220,7 @@
         maxWidth: 560,
         justifySelf: 'end'
       }
-    }, React.createElement(Photo, {
-      h: "auto",
-      src: P + 'band-uniform-group.jpg',
-      label: "Anchor Solas pipers and drummers in uniform",
-      style: {
-        aspectRatio: '2353 / 1568'
-      }
-    })))), React.createElement(Section, null, React.createElement("div", {
+    }, React.createElement(HeroCarousel, null)))), React.createElement(Section, null, React.createElement("div", {
       style: {
         display: 'flex',
         justifyContent: 'space-between',

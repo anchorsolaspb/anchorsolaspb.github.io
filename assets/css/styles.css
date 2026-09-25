@@ -297,3 +297,44 @@ a:hover{color:var(--beacon-700)}
   .aspb-ev-media img { transition: none; }
   .aspb-ev-card:hover .aspb-ev-media img { transform: none; }
 }
+
+/* ---------- Home slideshow ---------- */
+.aspb-hero-track { transition: transform 800ms var(--ease-in-out); will-change: transform; }
+.aspb-dot { width: 8px; height: 8px; padding: 0; border-radius: 50%; border: 1px solid rgba(246,244,239,.85); background: rgba(10,27,48,.35); cursor: pointer; transition: background var(--dur-base), transform var(--dur-base); }
+.aspb-dot.is-on { background: var(--beacon-300); border-color: var(--beacon-300); transform: scale(1.2); }
+.aspb-dot:focus-visible { outline: 2px solid var(--beacon-300); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .aspb-hero-track { transition: none; } }
+
+/* ---------- Instagram card fan (Events heading) ----------
+   Placed absolutely so it uses the empty space and adds no height. */
+.aspb-ig { position: absolute; right: var(--gutter); bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; z-index: 2; }
+.aspb-ig-label { display: inline-flex; align-items: center; gap: 6px; font: 600 10px/1 var(--font-sans); letter-spacing: .2em; text-transform: uppercase; color: var(--navy-800); text-decoration: none; }
+.aspb-hand { --w: 104px; --h: 136px; --s: 1; position: relative; width: calc(var(--w) + 110px); height: calc(var(--h) + 8px); }
+.aspb-card { position: absolute; left: 50%; bottom: 0; width: var(--w); height: var(--h); margin-left: calc(var(--w) / -2); display: flex; flex-direction: column; background: #fff; text-decoration: none; border: 1px solid var(--border-hairline); box-shadow: 0 8px 18px -10px rgba(15,42,72,.35); transform-origin: 50% 120%; transform: translate(var(--x0), 0) rotate(var(--r0)); transition: transform 550ms var(--ease-out), box-shadow 350ms var(--ease-out); }
+.aspb-card img { display: block; width: 100%; flex: 1; min-height: 0; object-fit: cover; background: var(--navy-50); }
+.aspb-card-meta { display: flex; align-items: center; gap: 4px; padding: 6px 7px 7px; font: 600 8px/1 var(--font-sans); color: var(--navy-800); white-space: nowrap; }
+.aspb-card:nth-child(1) { --x0: -4px; --r0: -4deg; z-index: 2; }
+.aspb-card:nth-child(2) { --x0: 5px; --r0: 5deg; z-index: 1; }
+.aspb-card:nth-child(3) { --x0: 1px; --r0: 1deg; z-index: 0; }
+.aspb-hand.one .aspb-card:nth-child(1) { --x0: 0px; --r0: -3deg; }
+.aspb-hand:hover .aspb-card:nth-child(1), .aspb-hand:focus-within .aspb-card:nth-child(1) { transform: translate(-46px, -6px) rotate(-13deg); }
+.aspb-hand:hover .aspb-card:nth-child(2), .aspb-hand:focus-within .aspb-card:nth-child(2) { transform: translate(46px, -6px) rotate(13deg); }
+.aspb-hand:hover .aspb-card:nth-child(3), .aspb-hand:focus-within .aspb-card:nth-child(3) { transform: translate(0, -10px); z-index: 3; }
+.aspb-hand.one:hover .aspb-card:nth-child(1) { transform: translate(0, -8px) rotate(0deg); }
+.aspb-hand .aspb-card:hover, .aspb-hand .aspb-card:focus-visible { z-index: 5 !important; box-shadow: 0 22px 40px -16px rgba(15,42,72,.5); }
+.aspb-hand:hover .aspb-card:nth-child(1):hover, .aspb-hand .aspb-card:nth-child(1):focus-visible { transform: translate(-50px, -16px) rotate(-9deg) scale(1.06); }
+.aspb-hand:hover .aspb-card:nth-child(2):hover, .aspb-hand .aspb-card:nth-child(2):focus-visible { transform: translate(50px, -16px) rotate(9deg) scale(1.06); }
+.aspb-hand:hover .aspb-card:nth-child(3):hover, .aspb-hand .aspb-card:nth-child(3):focus-visible { transform: translate(0, -24px) scale(1.06); }
+.aspb-hand.one .aspb-card:nth-child(1):hover { transform: translate(0, -14px) scale(1.06); }
+@media (max-width: 760px) {
+  .aspb-ig { bottom: 36px; gap: 10px; }
+  .aspb-hand { --w: 66px; --h: 88px; width: calc(var(--w) + 64px); }
+  .aspb-card-meta { display: none; }
+}
+@media (hover: none) {
+  .aspb-hand .aspb-card:nth-child(1) { transform: translate(-28px, -2px) rotate(-10deg); }
+  .aspb-hand .aspb-card:nth-child(2) { transform: translate(28px, -2px) rotate(10deg); }
+  .aspb-hand .aspb-card:nth-child(3) { transform: translate(0, -8px); z-index: 3; }
+  .aspb-hand.one .aspb-card:nth-child(1) { transform: rotate(-3deg); }
+}
+@media (prefers-reduced-motion: reduce) { .aspb-card { transition: none; } }
