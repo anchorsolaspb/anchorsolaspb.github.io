@@ -1,5 +1,9 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.8.1 (1 Oct 2026)
+- New site icon: the navy lighthouse anchor in a white circle. It shows in browser tabs, on phone home screens and, once Google updates, next to the site in Google search results.
+- Google is told the site name is "Anchor Solas Pipe Band" and given the band logo and Instagram link, so search results can show the band name instead of anchorsolaspb.com.
+
 ## v1.8.0 (1 Oct 2026)
 - The year in the footer ("© 2026") and above the Events heading ("Season 2026") now updates itself each new year.
 - Faster loading: the home page download drops from about 2.2 MB to about 0.25 MB.

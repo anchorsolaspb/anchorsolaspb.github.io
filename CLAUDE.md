@@ -8,7 +8,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.8.0** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.8.1** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
@@ -35,7 +35,8 @@ No wildcard records. Custom domain in GitHub Pages settings is `www.anchorsolasp
 ## Repo layout
 
 ```
-index.html                 Shell page. Loads scripts in order, holds meta, OG and version tags
+index.html                 Shell page. Loads scripts in order, holds meta, OG, version tags and JSON-LD (site name, logo)
+favicon.ico                Site icon 16/32/48 px (navy mark in a white circle). Also assets/images/icon-192.png, icon-512.png, apple-touch-icon.png
 CNAME                      Custom domain (managed by GitHub)
 CHANGELOG.md               Version history, newest first
 .pages.yml                 Pages CMS config (CMS-managed, see below)
