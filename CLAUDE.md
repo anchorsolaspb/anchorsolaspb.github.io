@@ -8,7 +8,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.8.0** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.8.1** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
@@ -35,7 +35,8 @@ No wildcard records. Custom domain in GitHub Pages settings is `www.anchorsolasp
 ## Repo layout
 
 ```
-index.html                 Shell page. Loads scripts in order, holds meta, OG and version tags
+index.html                 Shell page. Loads scripts in order, holds meta, OG, version tags and JSON-LD (site name, logo)
+favicon.ico                Site icon 16/32/48 px (navy mark in a white circle). Also assets/images/icon-192.png, icon-512.png, apple-touch-icon.png
 CNAME                      Custom domain (managed by GitHub)
 CHANGELOG.md               Version history, newest first
 .pages.yml                 Pages CMS config (CMS-managed, see below)
@@ -68,7 +69,7 @@ assets/js/app.js           App shell, hash routing, next-page button
 - **Booking form** posts JSON to `https://api.web3forms.com/submit` with a hidden `botcheck` honeypot. States are idle, sending, sent, error (error shows a mailto fallback).
 - **Home hero** is an auto-advancing slideshow (5 s, pauses on hover/focus, dots, swipe, still under reduced motion), framed by gold corner brackets.
 - **Events heading** shows up to 3 Instagram post cards as a fanned "hand" placed absolutely in the empty space beside the heading. It must never add height to the page. Hidden when `instagram.json` has no posts.
-- **Icons**: `assets/js/vendor/lucide.js` only holds the icons in use (arrow-right, check, clock, instagram, mail, map-pin, send). A new icon name renders blank until its entry is copied in from the full lucide v0.460.0 build.
+- **Icons**: `assets/js/vendor/lucide.js` only holds the icons in use (arrow-right, check, clock, instagram, mail, map-pin, send, youtube). A new icon name renders blank until its entry is copied in from the full lucide v0.460.0 build.
 - **Years**: "© year" in the footer and "Season year" on Events use the current year. "Founded in 2026" is fixed text.
 - **Photos**: keep the file name when compressing a CMS photo (the JSON files point to it). Resize to 1600 px max, JPEG quality about 80.
 - A **next-page button** slides in at the bottom of every page (Home, About, Events, Book Us, then back to Home).
@@ -81,6 +82,7 @@ assets/js/app.js           App shell, hash routing, next-page button
 - Custom classes are prefixed `aspb-` (e.g. `aspb-link` animated underline, `aspb-frame` corner brackets, `aspb-stack` responsive two-column, `aspb-ig`, `aspb-hand`, `aspb-card`, `aspb-next`, `aspb-social`).
 - Inline styles come from the original design. Responsive overrides live in `styles.css` media queries (breakpoints 900, 820, 760, 640, 520px).
 - Respect `prefers-reduced-motion` for every animation. Hover effects go inside `@media (hover: hover)` where it matters.
+- Socials: Instagram `https://www.instagram.com/anchorsolas_pb/`, YouTube `https://www.youtube.com/@anchorsolaspb`. Footer list is `SOCIALS` in `pages/layout.js`; Book Us lists them under the email.
 - Things the band rejected: lighthouse beam in the hero, scroll anchor progress rail (both removed). Keep visual flair subtle.
 
 ## Pages CMS

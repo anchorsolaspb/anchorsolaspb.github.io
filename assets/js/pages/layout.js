@@ -157,6 +157,7 @@
       }
     }, l)))));
   }
+  const SOCIALS = [['https://www.instagram.com/anchorsolas_pb/', 'instagram', 'Anchor Solas Pipe Band on Instagram', 'Instagram @anchorsolas_pb'], ['https://www.youtube.com/@anchorsolaspb', 'youtube', 'Anchor Solas Pipe Band on YouTube', 'YouTube @anchorsolaspb']];
   function Footer({
     go
   }) {
@@ -219,27 +220,33 @@
       style: L
     }, "admin@", React.createElement("wbr", null), "anchorsolaspb.com")), React.createElement("div", {
       className: "aspb-footer-follow"
-    }, React.createElement(H, null, "SOCIALS"), React.createElement("a", {
-      href: "https://www.instagram.com/anchorsolas_pb/",
+    }, React.createElement(H, null, "SOCIALS"), React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: 8,
+        marginTop: -4
+      }
+    }, SOCIALS.map(([href, name, label, title]) => React.createElement("a", {
+      key: name,
+      href: href,
       target: "_blank",
       rel: "noopener noreferrer",
-      "aria-label": "Anchor Solas Pipe Band on Instagram",
-      title: "Instagram @anchorsolas_pb",
+      "aria-label": label,
+      title: title,
       className: "aspb-social",
       style: {
         display: 'inline-grid',
         placeItems: 'center',
         width: 32,
         height: 32,
-        marginTop: -4,
         borderRadius: '50%',
         color: 'var(--paper)',
         border: '1px solid var(--border-on-inverse)'
       }
     }, React.createElement(Icon, {
-      name: "instagram",
+      name: name,
       size: 16
-    })))), React.createElement("div", {
+    })))))), React.createElement("div", {
       className: "aspb-footer-bar",
       style: {
         maxWidth: 'var(--container-max)',
