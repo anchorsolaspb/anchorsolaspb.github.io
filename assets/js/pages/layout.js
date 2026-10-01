@@ -252,7 +252,7 @@
         gap: '4px 12px',
         flexWrap: 'wrap'
       }
-    }, React.createElement("span", null, "© 2026 Anchor Solas Pipe Band"), React.createElement("span", {
+    }, React.createElement("span", null, "© ", new Date().getFullYear(), " Anchor Solas Pipe Band"), React.createElement("span", {
       style: {
         fontStyle: 'italic',
         fontFamily: 'var(--font-serif)',
