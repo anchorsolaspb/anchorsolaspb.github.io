@@ -1,5 +1,9 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.9.1 (1 Oct 2026)
+- Instagram cards on the Events page moved down into the empty space beside the Past Events and Past Competitions tabs, so they no longer slide under the menu bar when they fan out on hover. "Latest on" now lines up with the tabs. Phones are unchanged.
+- Cards are back to full size on tablets (the smaller tablet size from v1.8.2 is no longer needed).
+
 ## v1.9.0 (1 Oct 2026)
 - New "page not found" page. Broken or mistyped links (for example www.anchorsolaspb.com/old-page) now show a branded navy page saying "This tune isn't in our set." with Back to home and Book us buttons, instead of GitHub's plain error. Google is told not to list it.
 
