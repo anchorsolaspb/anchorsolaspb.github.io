@@ -1,5 +1,9 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.8.2 (1 Oct 2026)
+- Instagram cards on the Events page show the whole photo instead of cropping it. The photo area is now portrait (3:4) like an Instagram post, so portrait posts fill it and landscape photos sit in white bands.
+- Cards are a little smaller on tablets (768 to 900 px wide) so they no longer slip under the menu bar.
+
 ## v1.8.1 (1 Oct 2026)
 - New site icon: the navy lighthouse anchor in a white circle. It shows in browser tabs, on phone home screens and, once Google updates, next to the site in Google search results.
 - YouTube (@anchorsolaspb) added: an icon button next to Instagram under Socials in the footer, and a link under the Instagram one on the Book Us page.

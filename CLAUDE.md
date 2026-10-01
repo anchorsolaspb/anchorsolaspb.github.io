@@ -8,7 +8,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.8.1** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.8.2** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
@@ -68,7 +68,7 @@ assets/js/app.js           App shell, hash routing, next-page button
 - **Events** become "past" once their last day has passed and only past events are shown. Tabs are **Past Events** (`type: Performance`) and **Past Competitions** (`type: Competition`).
 - **Booking form** posts JSON to `https://api.web3forms.com/submit` with a hidden `botcheck` honeypot. States are idle, sending, sent, error (error shows a mailto fallback).
 - **Home hero** is an auto-advancing slideshow (5 s, pauses on hover/focus, dots, swipe, still under reduced motion), framed by gold corner brackets.
-- **Events heading** shows up to 3 Instagram post cards as a fanned "hand" placed absolutely in the empty space beside the heading. It must never add height to the page. Hidden when `instagram.json` has no posts.
+- **Events heading** shows up to 3 Instagram post cards as a fanned "hand" placed absolutely in the empty space beside the heading. It must never add height to the page. Card photos are 3:4 with `object-fit: contain` (whole image shown, never cropped). Hidden when `instagram.json` has no posts.
 - **Icons**: `assets/js/vendor/lucide.js` only holds the icons in use (arrow-right, check, clock, instagram, mail, map-pin, send, youtube). A new icon name renders blank until its entry is copied in from the full lucide v0.460.0 build.
 - **Years**: "© year" in the footer and "Season year" on Events use the current year. "Founded in 2026" is fixed text.
 - **Photos**: keep the file name when compressing a CMS photo (the JSON files point to it). Resize to 1600 px max, JPEG quality about 80.
