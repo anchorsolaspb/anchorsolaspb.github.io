@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found | Anchor Solas Pipe Band</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1C2D4A">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" href="/assets/images/icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    /* Standalone page: GitHub Pages serves this for any missing address, so all links are absolute */
+    body { background: var(--navy-800); color: var(--paper); min-height: 100vh; display: flex; flex-direction: column; }
+    .nf-hdr { border-bottom: 1px solid var(--border-on-inverse); }
+    .nf-hdr .in { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--gutter); height: 76px; display: flex; align-items: center; gap: 32px; }
+    .nf-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nf-brand img { height: 40px; width: auto; display: block; }
+    .nf-brand b { display: block; font: 600 15px/1 var(--font-sans); letter-spacing: .08em; color: var(--paper); }
+    .nf-brand small { display: block; margin-top: 3px; font: 500 10px/1 var(--font-sans); letter-spacing: .3em; color: var(--navy-200); }
+    .nf-hdr nav { margin-left: auto; display: flex; gap: 28px; }
+    .nf-hdr nav a { font: 600 12px/1 var(--font-sans); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--paper); text-decoration: none; }
+    main { flex: 1; display: flex; align-items: center; }
+    .nf { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: var(--sec-y) var(--gutter); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+    .nf-eyebrow { font: 600 12px/1 var(--font-sans); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--beacon-300); }
+    .nf h1 { margin: 20px 0 0; font: 300 clamp(40px, 6vw, 64px)/1.04 var(--font-serif); letter-spacing: -.02em; color: var(--paper); }
+    .nf p { margin: 20px 0 0; max-width: 520px; font: 400 18px/1.6 var(--font-sans); color: var(--navy-200); }
+    .nf-num { font: 300 clamp(120px, 20vw, 220px)/.9 var(--font-serif); letter-spacing: -.04em; text-align: center; color: transparent; -webkit-text-stroke: 1px var(--beacon-300); user-select: none; }
+    .nf-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    .nf-btn { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 28px; font: 600 12px/1 var(--font-sans); letter-spacing: var(--ls-label); text-transform: uppercase; text-decoration: none; border: 1px solid transparent; transition: background var(--dur-base), color var(--dur-base), border-color var(--dur-base); }
+    .nf-btn--gold { background: var(--beacon-500); color: var(--navy-950); }
+    .nf-btn--gold:hover { background: var(--beacon-300); color: var(--navy-950); }
+    .nf-btn--line { border-color: var(--paper); color: var(--paper); }
+    .nf-btn--line:hover { background: var(--paper); color: var(--navy-800); }
+    @media (max-width: 640px) {
+      .nf-hdr nav { display: none; }
+      .nf { grid-template-columns: 1fr; gap: 24px; }
+      .nf-num { order: -1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nf-hdr">
+    <div class="in">
+      <a class="nf-brand" href="/" aria-label="Anchor Solas Pipe Band home">
+        <img src="/assets/images/logo-mark-white.png" alt="">
+        <span><b>ANCHOR SOLAS</b><small>PIPE BAND</small></span>
+      </a>
+      <nav>
+        <a class="aspb-navlink" href="/">Home</a>
+        <a class="aspb-navlink" href="/#about">About</a>
+        <a class="aspb-navlink" href="/#events">Events</a>
+        <a class="aspb-navlink" href="/#book">Book Us</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="nf">
+      <div>
+        <div class="nf-eyebrow">Page not found</div>
+        <h1>This tune isn't <em>in our set.</em></h1>
+        <p>The page you're looking for has marched off somewhere. It may have moved, or the link may be mistyped.</p>
+        <div class="nf-row">
+          <a class="nf-btn nf-btn--gold" href="/">Back to home →</a>
+          <a class="nf-btn nf-btn--line" href="/#book">Book us</a>
+        </div>
+      </div>
+      <div class="nf-num" aria-hidden="true">404</div>
+    </div>
+  </main>
+</body>
+</html>
