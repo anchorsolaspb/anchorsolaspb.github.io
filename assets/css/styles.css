@@ -289,13 +289,15 @@ a:hover{color:var(--beacon-700)}
 
 /* ---------- Event card photo hover ---------- */
 .aspb-ev-media img { transition: transform 600ms var(--ease-out), filter 400ms var(--ease-out); }
+.aspb-ev-card:focus-visible { outline-offset: 4px; }
+.aspb-ev-card:focus-visible .aspb-ev-media img { transform: scale(1.04); filter: brightness(1.08); }
 @media (hover: hover) {
   .aspb-ev-card:hover .aspb-ev-media img { transform: scale(1.04); filter: brightness(1.08); }
 }
 @media (prefers-reduced-motion: reduce) {
   .aspb-page { animation: none; }
   .aspb-ev-media img { transition: none; }
-  .aspb-ev-card:hover .aspb-ev-media img { transform: none; }
+  .aspb-ev-card:hover .aspb-ev-media img, .aspb-ev-card:focus-visible .aspb-ev-media img { transform: none; }
 }
 
 /* ---------- Home slideshow ---------- */

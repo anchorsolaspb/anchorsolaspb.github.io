@@ -1,5 +1,13 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.8.0 (1 Oct 2026)
+- The year in the footer ("© 2026") and above the Events heading ("Season 2026") now updates itself each new year.
+- Faster loading: the home page download drops from about 2.2 MB to about 0.25 MB.
+  - Removed 1.4 MB of unused embedded photos and old page code from the design system file.
+  - Icon library trimmed to the 7 icons the site uses (356 KB to 3 KB).
+  - Large photos resized to 1600 px and compressed. File names are unchanged, so Pages CMS still finds them.
+- Keyboard access for events: Tab moves between event cards, Enter or Space opens one, Esc closes the pop-up and returns to the same card. Screen readers read each card's name and date.
+
 ## v1.7.1 (25 Sep 2026)
 - Added robots.txt and sitemap.xml so Google can find and read the site on www.anchorsolaspb.com.
 

@@ -58,7 +58,7 @@
         paddingBottom: 40,
         position: 'relative'
       }
-    }, React.createElement(IgFan, null), React.createElement(Eyebrow, null, "Season 2026"), React.createElement("h1", {
+    }, React.createElement(IgFan, null), React.createElement(Eyebrow, null, "Season ", new Date().getFullYear()), React.createElement("h1", {
       style: {
         margin: '20px 0 0',
         font: '300 clamp(52px,8vw,72px)/1.02 var(--font-serif)',
@@ -88,7 +88,21 @@
     }, list.map((e, i) => React.createElement("div", {
       key: e.id,
       className: "aspb-ev-card",
+      role: "button",
+      tabIndex: 0,
+      "aria-haspopup": "dialog",
+      "aria-label": e.t + ', ' + (e.day.includes('–') ? e.day : e._start.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      })) + ', view details',
       onClick: () => setSel(e),
+      onKeyDown: ev => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          setSel(e);
+        }
+      },
       style: {
         cursor: 'pointer',
         padding: '32px 32px 32px ' + (i % 2 ? '32px' : '0'),
