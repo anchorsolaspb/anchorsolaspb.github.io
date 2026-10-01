@@ -972,30 +972,53 @@ function RangeSlider({
   const v = value || inner;
   const track = React.useRef(null);
   const drag = React.useRef(null);
+  // Latest values for the pointer handlers, so a drag never works from an old render
+  const live = React.useRef(v);
+  live.current = v;
   const pct = x => (x - min) / (max - min) * 100;
   const set = nv => {
+    live.current = nv;
     setInner(nv);
     onChange && onChange(nv);
   };
   const fromEvent = e => {
     const r = track.current.getBoundingClientRect();
     const t = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
-    return Math.round((min + t * (max - min)) / step) * step;
+    return Math.min(max, Math.max(min, Math.round((min + t * (max - min)) / step) * step));
   };
   const down = e => {
+    if (e.button !== undefined && e.button !== 0) return;
+    const cur = live.current;
     const x = fromEvent(e);
-    const i = Math.abs(x - v[0]) <= Math.abs(x - v[1]) ? 0 : 1;
-    drag.current = i;
-    move(e);
+    // When both thumbs sit on the same value, the drag direction decides which one moves
+    drag.current = cur[0] === cur[1] ? 'tie' : Math.abs(x - cur[0]) <= Math.abs(x - cur[1]) ? 0 : 1;
     e.currentTarget.setPointerCapture(e.pointerId);
+    move(e);
   };
   const move = e => {
     if (drag.current == null) return;
+    const cur = live.current;
     const x = fromEvent(e);
-    const nv = [...v];
-    nv[drag.current] = x;
-    if (nv[0] > nv[1]) nv[drag.current] = nv[1 - drag.current];
-    set(nv);
+    if (drag.current === 'tie') {
+      if (x === cur[0]) return;
+      drag.current = x > cur[0] ? 1 : 0;
+    }
+    let i = drag.current;
+    const nv = [...cur];
+    // Dragging one thumb past the other hands the drag over, so the range keeps following the pointer
+    if (i === 0 && x > cur[1]) {
+      nv[0] = cur[1];
+      i = 1;
+    } else if (i === 1 && x < cur[0]) {
+      nv[1] = cur[0];
+      i = 0;
+    }
+    drag.current = i;
+    nv[i] = x;
+    if (nv[0] !== cur[0] || nv[1] !== cur[1]) set(nv);
+  };
+  const end = () => {
+    drag.current = null;
   };
   const key = i => e => {
     const d = e.key === 'ArrowRight' || e.key === 'ArrowUp' ? step : e.key === 'ArrowLeft' || e.key === 'ArrowDown' ? -step : 0;
@@ -1005,9 +1028,8 @@ function RangeSlider({
     nv[i] = Math.min(i ? max : v[1], Math.max(i ? v[0] : min, nv[i] + d));
     set(nv);
   };
-  const Thumb = ({
-    i
-  }) => /*#__PURE__*/React.createElement("span", {
+  const thumb = i => /*#__PURE__*/React.createElement("span", {
+    key: i,
     role: "slider",
     tabIndex: 0,
     "aria-valuemin": min,
@@ -1061,7 +1083,9 @@ function RangeSlider({
     ref: track,
     onPointerDown: down,
     onPointerMove: move,
-    onPointerUp: () => drag.current = null,
+    onPointerUp: end,
+    onPointerCancel: end,
+    onLostPointerCapture: end,
     style: {
       position: 'relative',
       height: 28,
@@ -1088,11 +1112,7 @@ function RangeSlider({
       width: pct(v[1]) - pct(v[0]) + '%',
       background: 'var(--navy-800)'
     }
-  }), /*#__PURE__*/React.createElement(Thumb, {
-    i: 0
-  }), /*#__PURE__*/React.createElement(Thumb, {
-    i: 1
-  })), /*#__PURE__*/React.createElement("div", {
+  }), thumb(0), thumb(1)), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
