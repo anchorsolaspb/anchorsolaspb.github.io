@@ -43,6 +43,95 @@
     } catch (e) {}
     if (!res.ok || !data.success) throw new Error(data.body && data.body.message || data.message || 'Status ' + res.status);
   }
+  // Performance options, exactly as the booking form sends them
+  const PERFS = ['Solo Bagpiper Performance', 'Duo Performance (1 Piper + 1 Snare Drummer)', 'Piping Quartet (4 Pipers)', 'Quintet Band (3 Pipers, 1 Snare, 1 Bass)', 'Full Band (Exact breakdown to be discussed)', 'Others (Let us know in remarks)'];
+  // Line-up dots: p piper, s snare, b bass, m more to be discussed
+  const PACKAGES = [{
+    perf: 0,
+    name: 'Solo Bagpiper',
+    who: '1 piper',
+    lineup: 'p',
+    good: 'Wedding ceremonies, memorials, welcoming guests'
+  }, {
+    perf: 1,
+    name: 'Duo',
+    who: '1 piper, 1 snare drummer',
+    lineup: 'ps',
+    good: 'Dinners, receptions, small ceremonies'
+  }, {
+    perf: 2,
+    name: 'Piping Quartet',
+    who: '4 pipers',
+    lineup: 'pppp',
+    good: 'Church services, processions, formal events'
+  }, {
+    perf: 3,
+    name: 'Quintet Band',
+    who: '3 pipers, 1 snare, 1 bass',
+    lineup: 'pppsb',
+    good: 'Brigade and school events, corporate functions'
+  }, {
+    perf: 4,
+    name: 'Full Band',
+    who: 'Exact line-up to be discussed',
+    lineup: 'ppppppssbm',
+    good: 'Festivals, parades, open houses, big celebrations',
+    feature: true
+  }];
+  const Dots = ({
+    lineup
+  }) => React.createElement("div", {
+    className: "aspb-pk-lineup",
+    "aria-hidden": "true"
+  }, lineup.split('').map((c, i) => React.createElement("i", {
+    key: i,
+    className: 'aspb-pk-dot ' + c
+  })));
+  function Packages({
+    onPick
+  }) {
+    return React.createElement("section", {
+      className: "aspb-pk"
+    }, React.createElement("div", {
+      className: "aspb-pk-in"
+    }, React.createElement("div", {
+      className: "aspb-pk-top"
+    }, React.createElement("div", null, React.createElement(Eyebrow, null, "Ways to book us"), React.createElement("h2", {
+      className: "aspb-pk-title"
+    }, "From one piper ", React.createElement("em", null, "to the full band.")), React.createElement("p", {
+      className: "aspb-pk-lede"
+    }, "Pick a line-up to start your enquiry. We'll help you settle the details.")), React.createElement("div", {
+      className: "aspb-pk-legend",
+      "aria-hidden": "true"
+    }, React.createElement("span", null, React.createElement("i", {
+      className: "aspb-pk-dot p"
+    }), "Piper"), React.createElement("span", null, React.createElement("i", {
+      className: "aspb-pk-dot s"
+    }), "Snare"), React.createElement("span", null, React.createElement("i", {
+      className: "aspb-pk-dot b"
+    }), "Bass"))), React.createElement("div", {
+      className: "aspb-pk-cards"
+    }, PACKAGES.map(k => React.createElement("article", {
+      key: k.name,
+      className: 'aspb-pk-card' + (k.feature ? ' is-feature' : '')
+    }, React.createElement(Dots, {
+      lineup: k.lineup
+    }), React.createElement("div", null, React.createElement("h3", null, k.name), React.createElement("div", {
+      className: "aspb-pk-who"
+    }, k.who)), React.createElement("div", {
+      className: "aspb-pk-good"
+    }, React.createElement("b", null, "Good for"), React.createElement("p", null, k.good)), React.createElement("button", {
+      type: "button",
+      className: "aspb-pk-enq",
+      "aria-label": 'Enquire about ' + k.name,
+      onClick: () => onPick(PERFS[k.perf])
+    }, "Enquire")))), React.createElement("div", {
+      className: "aspb-pk-other"
+    }, React.createElement("div", null, React.createElement("h3", null, "Something else in mind?"), React.createElement("p", null, "Choose \"Others\" in the form and tell us what you're planning in the remarks.")), React.createElement("button", {
+      type: "button",
+      onClick: () => onPick(PERFS[5])
+    }, "Go to the form \u2193"))));
+  }
   function BookScreen({
     toast
   }) {
@@ -95,7 +184,27 @@
       setStatus('idle');
     };
     const done = status === 'sent' || status === 'mailto';
-    return React.createElement("section", {
+    // A package card picks its Performance option and brings the form into view
+    const [picked, setPicked] = React.useState(null);
+    const panelRef = React.useRef(null);
+    const choose = perf => {
+      up('perf')(perf);
+      setPicked(perf);
+      if (done) setStatus('idle');
+      const el = panelRef.current;
+      if (!el) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      el.scrollIntoView({
+        behavior: reduce ? 'auto' : 'smooth',
+        block: 'start'
+      });
+      el.classList.remove('is-flash');
+      void el.offsetWidth;
+      el.classList.add('is-flash');
+    };
+    return React.createElement(React.Fragment, null, React.createElement(Packages, {
+      onPick: choose
+    }), React.createElement("section", {
       style: {
         background: 'var(--navy-800)'
       }
@@ -190,6 +299,8 @@
     }), React.createElement("span", {
       className: "aspb-link"
     }, "@anchorsolaspb")))), React.createElement("div", {
+      ref: panelRef,
+      className: "aspb-book-panel",
       style: {
         background: 'var(--surface-card)',
         padding: 'clamp(24px,4vw,40px)',
@@ -301,9 +412,17 @@
     })), React.createElement(Radio, {
       name: "size",
       label: "Performance",
-      options: ['Solo Bagpiper Performance', 'Duo Performance (1 Piper + 1 Snare Drummer)', 'Piping Quartet (4 Pipers)', 'Quintet Band (3 Pipers, 1 Snare, 1 Bass)', 'Full Band (Exact breakdown to be discussed)', 'Others (Let us know in remarks)'],
+      options: PERFS.map(o => ({
+        value: o,
+        label: picked === o && f.perf === o ? React.createElement(React.Fragment, null, o, " ", React.createElement("span", {
+          className: "aspb-pk-flag"
+        }, "Picked from the card above")) : o
+      })),
       value: f.perf,
-      onChange: up('perf')
+      onChange: v => {
+        setPicked(null);
+        up('perf')(v);
+      }
     }), React.createElement(RangeSlider, {
       label: "Budget",
       min: 200,
@@ -361,7 +480,7 @@
         font: '400 13px/1.5 var(--font-sans)',
         color: 'var(--text-muted)'
       }
-    }, HAS_KEY ? 'Your enquiry goes straight to ' + TO + '.' : 'Sending opens your email app with the details filled in, addressed to ' + TO + '.')))));
+    }, HAS_KEY ? 'Your enquiry goes straight to ' + TO + '.' : 'Sending opens your email app with the details filled in, addressed to ' + TO + '.'))))));
   }
   window.BookScreen = BookScreen;
 })();

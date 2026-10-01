@@ -1,5 +1,10 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.10.0 (1 Oct 2026)
+- Book Us page has a new "Ways to book us" section above the enquiry form, with a card for each Performance option in the form: Solo Bagpiper, Duo, Piping Quartet, Quintet Band and Full Band. Each card shows the line-up as dots (gold piper, navy snare, ring bass), who plays and what it suits.
+- Pressing Enquire on a card scrolls to the form with that option already ticked and a "Picked from the card above" tag next to it. "Something else in mind?" picks Others. The tag disappears if the option is changed by hand.
+- The rest of the Book Us page (heading, description, email and social links, and every form field) is unchanged, and enquiries are sent exactly as before.
+
 ## v1.9.1 (1 Oct 2026)
 - Instagram cards on the Events page moved down into the empty space beside the Past Events and Past Competitions tabs, so they no longer slide under the menu bar when they fan out on hover. "Latest on" now lines up with the tabs. Phones are unchanged.
 - Cards are back to full size on tablets (the smaller tablet size from v1.8.2 is no longer needed).
