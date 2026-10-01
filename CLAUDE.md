@@ -8,7 +8,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.9.1** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.10.0** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
@@ -67,6 +67,7 @@ assets/js/app.js           App shell, hash routing, next-page button
 - Load order in `index.html` matters: React, ReactDOM, lucide, design-system, images, events-data, form-config, pages/layout, home, events, about, book, app.
 - **Routing** is hash based: `/`, `#about`, `#events`, `#book`. `go(page)` uses `history.pushState`. Tab title updates per page.
 - **Events** become "past" once their last day has passed and only past events are shown. Tabs are **Past Events** (`type: Performance`) and **Past Competitions** (`type: Competition`).
+- **Book Us packages**: `Packages` in `pages/book.js` renders cards from `PACKAGES` (line-up letters p/s/b/m, "Good for" text) above the unchanged form section. `PERFS` is the single list of Performance options; cards pick one via `choose()`, which ticks the radio, shows the "Picked from the card above" tag and scrolls to `.aspb-book-panel`. CSS is under `aspb-pk-` in `styles.css`.
 - **Booking form** posts JSON to `https://api.web3forms.com/submit` with a hidden `botcheck` honeypot. States are idle, sending, sent, error (error shows a mailto fallback).
 - **Home hero** is an auto-advancing slideshow (5 s, pauses on hover/focus, dots, swipe, still under reduced motion), framed by gold corner brackets.
 - **Events heading** shows up to 3 Instagram post cards as a fanned "hand" placed absolutely in the empty space beside the heading and tabs (`bottom: -30px` above 760px, so the hover fan clears the sticky header). It must never add height to the page. Card photos are 3:4 with `object-fit: contain` (whole image shown, never cropped). Hidden when `instagram.json` has no posts.
@@ -118,6 +119,7 @@ When changing a schema, keep stored values backward compatible (the loaders acce
 - Auto-compress photos uploaded through Pages CMS (they arrive at full size, e.g. 2560 px WhatsApp images)
 - Visitor stats (GoatCounter or similar, free)
 - FAQ on Book Us (needs answers from the band)
+- Package "Good for" lines are suggestions; confirm with the band
 - Gallery page built from event photos
 - Automatic Instagram feed (needs IG Creator or Business account and a Meta app) instead of picking posts in Pages CMS
 - Optional: transfer the domain from Squarespace to Cloudflare Registrar
