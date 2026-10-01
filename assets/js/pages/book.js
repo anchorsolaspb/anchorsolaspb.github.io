@@ -10,7 +10,7 @@
   const TO = 'admin@anchorsolaspb.com';
   const KEY = ((window.ASPB_FORM || {}).accessKey || '').trim();
   const HAS_KEY = /^[0-9a-f-]{30,}$/i.test(KEY);
-  const budgetText = b => 'S$' + b[0].toLocaleString() + ' to S$' + b[1].toLocaleString() + (b[1] >= 5000 ? '+' : '');
+  const budgetText = b => 'S$' + b[0].toLocaleString() + ' to S$' + b[1].toLocaleString() + (b[1] >= 10000 ? '+' : '');
   const subjectOf = f => 'Booking enquiry: ' + (f.type || 'Performance') + (f.date ? ' on ' + f.date : '') + ' (' + f.name.trim() + ')';
   function buildMail(f) {
     const lines = ['Name: ' + f.name, 'Email: ' + f.email, 'Event type: ' + (f.type || 'Not specified'), 'Date: ' + (f.date || 'Not specified'), 'Performance: ' + f.perf, 'Budget: ' + budgetText(f.budget), 'Remarks: ' + (f.remarks || 'None')];
@@ -426,7 +426,7 @@
     }), React.createElement(RangeSlider, {
       label: "Budget",
       min: 200,
-      max: 5000,
+      max: 10000,
       step: 50,
       value: f.budget,
       onChange: up('budget'),

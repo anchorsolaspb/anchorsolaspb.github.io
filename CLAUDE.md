@@ -8,7 +8,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.10.0** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.10.2** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
@@ -66,9 +66,10 @@ assets/js/app.js           App shell, hash routing, next-page button
 - Scripts are classic `<script>` tags, not modules. Components share state through globals: `window.AnchorSolasDesignSystem_897ee1`, `window.EVENTS`, `window.HERO`, `window.IG_POSTS`, `window.__RES`, and each page file assigns its screen to `window` (e.g. `window.EventsScreen`).
 - Load order in `index.html` matters: React, ReactDOM, lucide, design-system, images, events-data, form-config, pages/layout, home, events, about, book, app.
 - **Routing** is hash based: `/`, `#about`, `#events`, `#book`. `go(page)` uses `history.pushState`. Tab title updates per page.
+- **Page transitions**: `withTransition()` in `app.js` wraps every page change in `document.startViewTransition` (450 ms crossfade, set on `::view-transition-*(root)` in `styles.css`). Without View Transitions it falls back to the `.aspb-page` fade plus header colour transitions (`.aspb-header`). Skipped under reduced motion.
 - **Events** become "past" once their last day has passed and only past events are shown. Tabs are **Past Events** (`type: Performance`) and **Past Competitions** (`type: Competition`).
 - **Book Us packages**: `Packages` in `pages/book.js` renders cards from `PACKAGES` (line-up letters p/s/b/m, "Good for" text) above the unchanged form section. `PERFS` is the single list of Performance options; cards pick one via `choose()`, which ticks the radio, shows the "Picked from the card above" tag and scrolls to `.aspb-book-panel`. CSS is under `aspb-pk-` in `styles.css`.
-- **Booking form** posts JSON to `https://api.web3forms.com/submit` with a hidden `botcheck` honeypot. States are idle, sending, sent, error (error shows a mailto fallback).
+- **Booking form** posts JSON to `https://api.web3forms.com/submit` with a hidden `botcheck` honeypot. States are idle, sending, sent, error (error shows a mailto fallback). Budget slider is S$200 to S$10,000+ (step 50); `RangeSlider` in `design-system.js` picks the thumb by drag direction when both share a value and hands the drag over when one passes the other.
 - **Home hero** is an auto-advancing slideshow (5 s, pauses on hover/focus, dots, swipe, still under reduced motion), framed by gold corner brackets.
 - **Events heading** shows up to 3 Instagram post cards as a fanned "hand" placed absolutely in the empty space beside the heading and tabs (`bottom: -30px` above 760px, so the hover fan clears the sticky header). It must never add height to the page. Card photos are 3:4 with `object-fit: contain` (whole image shown, never cropped). Hidden when `instagram.json` has no posts.
 - **Icons**: `assets/js/vendor/lucide.js` only holds the icons in use (arrow-right, check, clock, instagram, mail, map-pin, send, youtube). A new icon name renders blank until its entry is copied in from the full lucide v0.460.0 build.

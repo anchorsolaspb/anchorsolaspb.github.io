@@ -1,5 +1,16 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.10.2 (1 Oct 2026)
+- Booking form budget now goes up to S$10,000+ (was S$5,000+). Enquiries show "S$... to S$10,000+" when the top end is chosen.
+- Budget slider fixes:
+  - When both handles are on the same amount, dragging left moves the lower handle and dragging right moves the upper one. Before, it could only move one way.
+  - Dragging the lower handle to the right no longer freezes after the first step.
+  - Dragging one handle past the other now carries on with the other handle instead of stopping.
+
+## v1.10.1 (1 Oct 2026)
+- Smoother page changes. Switching pages now crossfades the whole screen over about half a second, so the navy pages (Home, Book Us) blend into the light pages (About, Events) instead of snapping. This includes the menu bar, the back button and the next-page button.
+- Older browsers that can't crossfade keep the previous fade-in and blend the menu bar colours instead. Visitors with reduced motion turned on see an instant change, as before.
+
 ## v1.10.0 (1 Oct 2026)
 - Book Us page has a new "Ways to book us" section above the enquiry form, with a card for each Performance option in the form: Solo Bagpiper, Duo, Piping Quartet, Quintet Band and Full Band. Each card shows the line-up as dots (gold piper, navy snare, ring bass), who plays and what it suits.
 - Pressing Enquire on a card scrolls to the form with that option already ticked and a "Picked from the card above" tag next to it. "Something else in mind?" picks Others. The tag disappears if the option is changed by hand.

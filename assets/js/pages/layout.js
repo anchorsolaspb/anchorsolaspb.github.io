@@ -74,6 +74,7 @@
   }) {
     const items = [['home', 'Home'], ['about', 'About'], ['events', 'Events'], ['book', 'Book Us']];
     return React.createElement("header", {
+      className: "aspb-header",
       style: {
         position: 'sticky',
         top: 0,
