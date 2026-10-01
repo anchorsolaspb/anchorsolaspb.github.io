@@ -56,14 +56,23 @@ function NextPage({
     onClick: () => go(to)
   }, to === 'home' ? 'Back to' : 'Next', " ", React.createElement("span", null, label, " →"));
 }
+// Crossfade the whole screen between pages where the browser supports it, so navy and paper pages blend instead of snapping
+const withTransition = update => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!document.startViewTransition || reduce) {
+    update();
+    return;
+  }
+  document.startViewTransition(() => ReactDOM.flushSync(update));
+};
 function App() {
   const [page, setPage] = React.useState(fromHash);
   const [t, setT] = React.useState(null);
   React.useEffect(() => {
-    const sync = () => {
+    const sync = () => withTransition(() => {
       setPage(fromHash());
       window.scrollTo(0, 0);
-    };
+    });
     window.addEventListener('popstate', sync);
     window.addEventListener('hashchange', sync);
     return () => {
@@ -78,8 +87,10 @@ function App() {
     if (!PAGES.includes(p)) p = 'home';
     const url = p === 'home' ? location.pathname + location.search : '#' + p;
     if (p !== page) history.pushState(null, '', url);
-    setPage(p);
-    window.scrollTo(0, 0);
+    withTransition(() => {
+      setPage(p);
+      window.scrollTo(0, 0);
+    });
   };
   const toast = m => {
     setT(m);

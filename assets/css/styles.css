@@ -286,6 +286,12 @@ a:hover{color:var(--beacon-700)}
 /* ---------- Page fade-in ---------- */
 @keyframes aspb-fade { from { opacity: 0; } to { opacity: 1; } }
 .aspb-page { animation: aspb-fade 240ms var(--ease-out); }
+/* Page change: whole-screen crossfade (View Transitions). Browsers without it keep the content fade and glide the header colours instead */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; animation-timing-function: var(--ease-in-out); }
+@supports (view-transition-name: none) { .aspb-page { animation: none; } }
+@supports not (view-transition-name: none) {
+  .aspb-header, .aspb-header > div > a span, .aspb-header nav a { transition: background-color 400ms var(--ease-in-out), border-color 400ms var(--ease-in-out), color 400ms var(--ease-in-out); }
+}
 
 /* ---------- Event card photo hover ---------- */
 .aspb-ev-media img { transition: transform 600ms var(--ease-out), filter 400ms var(--ease-out); }
@@ -296,6 +302,7 @@ a:hover{color:var(--beacon-700)}
 }
 @media (prefers-reduced-motion: reduce) {
   .aspb-page { animation: none; }
+  .aspb-header, .aspb-header * { transition: none !important; }
   .aspb-ev-media img { transition: none; }
   .aspb-ev-card:hover .aspb-ev-media img, .aspb-ev-card:focus-visible .aspb-ev-media img { transform: none; }
 }
