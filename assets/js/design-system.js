@@ -993,6 +993,12 @@ function RangeSlider({
     // When both thumbs sit on the same value, the drag direction decides which one moves
     drag.current = cur[0] === cur[1] ? 'tie' : Math.abs(x - cur[0]) <= Math.abs(x - cur[1]) ? 0 : 1;
     e.currentTarget.setPointerCapture(e.pointerId);
+    // Stop the browser starting a text selection or a drag-and-drop ghost image of the slider
+    e.preventDefault();
+    const th = track.current.querySelectorAll('[role=slider]')[drag.current === 'tie' ? 1 : drag.current];
+    if (th) th.focus({
+      preventScroll: true
+    });
     move(e);
   };
   const move = e => {
@@ -1086,11 +1092,14 @@ function RangeSlider({
     onPointerUp: end,
     onPointerCancel: end,
     onLostPointerCapture: end,
+    onDragStart: e => e.preventDefault(),
     style: {
       position: 'relative',
       height: 28,
       cursor: 'pointer',
-      touchAction: 'none'
+      touchAction: 'none',
+      userSelect: 'none',
+      WebkitUserSelect: 'none'
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {

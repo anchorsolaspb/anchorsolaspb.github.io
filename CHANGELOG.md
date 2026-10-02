@@ -1,5 +1,8 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.10.3 (1 Oct 2026)
+- Budget slider: dragging a handle no longer picks up a see-through copy of the slider (the browser's drag-and-drop image) or highlights text on the page, which made the handle stop following the mouse.
+
 ## v1.10.2 (1 Oct 2026)
 - Booking form budget now goes up to S$10,000+ (was S$5,000+). Enquiries show "S$... to S$10,000+" when the top end is chosen.
 - Budget slider fixes:
