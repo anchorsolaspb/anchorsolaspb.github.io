@@ -8,7 +8,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.10.3** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.10.4** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
@@ -36,7 +36,7 @@ No wildcard records. Custom domain in GitHub Pages settings is `www.anchorsolasp
 
 ```
 index.html                 Shell page. Loads scripts in order, holds meta, OG, version tags and JSON-LD (site name, logo)
-favicon.ico                Site icon 16/32/48 px (navy mark in a white circle). Also assets/images/icon-192.png, icon-512.png, apple-touch-icon.png
+favicon.ico                Site icon 16/32/48 px (navy mark in a white circle). Also assets/images/favicon-48/96/144/192.png (listed first in <head> so Google uses a large, sharp one), icon-512.png (JSON-LD logo), apple-touch-icon.png. Make icons from the full-size mark in git history (commit ad89244, logo-mark-navy.png 428x545), not the 200 px site copy
 404.html                   Standalone "page not found" page served by GitHub Pages. Plain HTML, absolute /assets paths, noindex
 CNAME                      Custom domain (managed by GitHub)
 CHANGELOG.md               Version history, newest first
