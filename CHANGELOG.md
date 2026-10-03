@@ -1,5 +1,8 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.10.4 (3 Oct 2026)
+- Sharper site icon in Google results and browser tabs. Google was enlarging the small 48 px icon, which looked blurry. The site now offers crisp 48, 96, 144 and 192 px icons made from the full-size logo, and the lighthouse anchor sits a little larger in the white circle. Google shows the new icon after it next visits the site.
+
 ## v1.10.3 (1 Oct 2026)
 - Budget slider: dragging a handle no longer picks up a see-through copy of the slider (the browser's drag-and-drop image) or highlights text on the page, which made the handle stop following the mouse.
 
