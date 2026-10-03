@@ -8,10 +8,20 @@ const TITLES = {
   events: 'Events | Anchor Solas Pipe Band',
   book: 'Book Us | Anchor Solas Pipe Band'
 };
-const fromHash = () => {
-  const h = (location.hash || '').replace(/^#\/?/, '').toLowerCase();
-  return PAGES.includes(h) ? h : 'home';
+// Each page has its own address: /, /about/, /events/, /book/ (separate HTML files so search engines can list them)
+const pathOf = p => p === 'home' ? '/' : '/' + p + '/';
+const fromPath = () => {
+  const seg = location.pathname.replace(/^\/+|\/+$/g, '').split('/')[0].toLowerCase();
+  return PAGES.includes(seg) ? seg : 'home';
 };
+// Older links used #about, #events, #book. Send them to the new address without adding a history step
+const fromLegacyHash = () => {
+  const h = (location.hash || '').replace(/^#\/?/, '').toLowerCase();
+  return PAGES.includes(h) ? h : null;
+};
+const legacy = fromLegacyHash();
+if (legacy) history.replaceState(null, '', pathOf(legacy) + location.search);
+const currentPage = () => fromLegacyHash() || fromPath();
 const NEXT = {
   home: ['about', 'About'],
   about: ['events', 'Events'],
@@ -66,13 +76,17 @@ const withTransition = update => {
   document.startViewTransition(() => ReactDOM.flushSync(update));
 };
 function App() {
-  const [page, setPage] = React.useState(fromHash);
+  const [page, setPage] = React.useState(currentPage);
   const [t, setT] = React.useState(null);
   React.useEffect(() => {
-    const sync = () => withTransition(() => {
-      setPage(fromHash());
-      window.scrollTo(0, 0);
-    });
+    const sync = () => {
+      const lp = fromLegacyHash();
+      if (lp) history.replaceState(null, '', pathOf(lp) + location.search);
+      withTransition(() => {
+        setPage(currentPage());
+        window.scrollTo(0, 0);
+      });
+    };
     window.addEventListener('popstate', sync);
     window.addEventListener('hashchange', sync);
     return () => {
@@ -85,8 +99,7 @@ function App() {
   }, [page]);
   const go = p => {
     if (!PAGES.includes(p)) p = 'home';
-    const url = p === 'home' ? location.pathname + location.search : '#' + p;
-    if (p !== page) history.pushState(null, '', url);
+    if (p !== page) history.pushState(null, '', pathOf(p));
     withTransition(() => {
       setPage(p);
       window.scrollTo(0, 0);

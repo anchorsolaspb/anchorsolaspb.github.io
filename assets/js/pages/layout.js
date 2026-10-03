@@ -94,7 +94,7 @@
         gap: 32
       }
     }, React.createElement("a", {
-      href: "./",
+      href: "/",
       "aria-label": "Anchor Solas Pipe Band home",
       onClick: e => {
         e.preventDefault();
@@ -139,7 +139,7 @@
       }
     }, items.map(([k, l]) => React.createElement("a", {
       key: k,
-      href: k === 'home' ? './' : '#' + k,
+      href: k === 'home' ? '/' : '/' + k + '/',
       "aria-current": page === k ? 'page' : undefined,
       className: page === k ? '' : 'aspb-navlink',
       onClick: e => {
@@ -206,7 +206,7 @@
       }
     }, [['about', 'About'], ['events', 'Events'], ['book', 'Book Us']].map(([k, l]) => React.createElement("a", {
       key: k,
-      href: '#' + k,
+      href: '/' + k + '/',
       className: "aspb-link",
       onClick: e => {
         e.preventDefault();
