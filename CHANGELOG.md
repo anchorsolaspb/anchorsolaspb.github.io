@@ -1,5 +1,12 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.11.0 (3 Oct 2026)
+- Each page now has its own address: www.anchorsolaspb.com/about/, /events/ and /book/ (they were /#about, /#events and /#book). Google ignores everything after a #, so before it saw the whole site as one page. Now it can list each page separately, which makes the site eligible for sitelinks (the page links Google sometimes shows under a result).
+- Each page has its own title and description for search results and link previews.
+- sitemap.xml lists all four pages.
+- Old links with # (for example www.anchorsolaspb.com/#book) still work and move to the new address.
+- The site looks and behaves the same, including the fade between pages.
+
 ## v1.10.4 (3 Oct 2026)
 - Sharper site icon in Google results and browser tabs. Google was enlarging the small 48 px icon, which looked blurry. The site now offers crisp 48, 96, 144 and 192 px icons made from the full-size logo, and the lighthouse anchor sits a little larger in the white circle. Google shows the new icon after it next visits the site.
 

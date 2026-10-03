@@ -8,7 +8,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.10.4** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.11.0** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
@@ -19,7 +19,7 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 | Google Workspace | Band email `admin@anchorsolaspb.com` | MX `smtp.google.com`, SPF and DKIM TXT records live in Squarespace DNS. Never touch them. |
 | Pages CMS (app.pagescms.org) | Non-technical editing of events, slideshow and Instagram cards | Config is `.pages.yml` in the repo root. Edits commit straight to `main`. |
 | Web3Forms | Booking form delivery to `admin@anchorsolaspb.com` | Access key lives in `assets/js/form-config.js` (public by design). Without a key the form falls back to a `mailto:` link. |
-| Google Search Console | Indexing | Domain property verified by DNS TXT. `robots.txt` and `sitemap.xml` are in the repo root. |
+| Google Search Console | Indexing | Domain property verified by DNS TXT. `robots.txt` and `sitemap.xml` (all four page URLs) are in the repo root. |
 
 ### DNS records (Squarespace)
 
@@ -35,7 +35,9 @@ No wildcard records. Custom domain in GitHub Pages settings is `www.anchorsolasp
 ## Repo layout
 
 ```
-index.html                 Shell page. Loads scripts in order, holds meta, OG, version tags and JSON-LD (site name, logo)
+index.html                 Shell page for /. Loads scripts in order, holds meta, OG, version tags and JSON-LD (site name, logo)
+about/index.html, events/index.html, book/index.html
+                           Copies of the shell for /about/, /events/, /book/. Identical except title, description, canonical, og:title/description/url. Keep all four in sync
 favicon.ico                Site icon 16/32/48 px (navy mark in a white circle). Also assets/images/favicon-48/96/144/192.png (listed first in <head> so Google uses a large, sharp one), icon-512.png (JSON-LD logo), apple-touch-icon.png. Make icons from the full-size mark in git history (commit ad89244, logo-mark-navy.png 428x545), not the 200 px site copy
 404.html                   Standalone "page not found" page served by GitHub Pages. Plain HTML, absolute /assets paths, noindex
 CNAME                      Custom domain (managed by GitHub)
@@ -64,8 +66,9 @@ assets/js/app.js           App shell, hash routing, next-page button
 
 - **No build step in the repo.** Page files in `assets/js/pages/` and `app.js` are plain JavaScript using `React.createElement` (they were compiled from JSX once, readable and unminified). Edit them directly. Do not introduce JSX, bundlers or npm unless asked.
 - Scripts are classic `<script>` tags, not modules. Components share state through globals: `window.AnchorSolasDesignSystem_897ee1`, `window.EVENTS`, `window.HERO`, `window.IG_POSTS`, `window.__RES`, and each page file assigns its screen to `window` (e.g. `window.EventsScreen`).
+- All paths in the shells and JS are root-absolute (`/assets/...`, `/events.json`) because the shells live in sub-folders. `events-data.js` turns CMS image paths into `/assets/...`.
 - Load order in `index.html` matters: React, ReactDOM, lucide, design-system, images, events-data, form-config, pages/layout, home, events, about, book, app.
-- **Routing** is hash based: `/`, `#about`, `#events`, `#book`. `go(page)` uses `history.pushState`. Tab title updates per page.
+- **Routing** uses real paths: `/`, `/about/`, `/events/`, `/book/` (`pathOf()`, `fromPath()` in `app.js`). `go(page)` uses `history.pushState`; the page shell for that path is what search engines and direct visits load. Old `#about`-style links are rewritten to the path with `replaceState`. Tab title updates per page. Links in `layout.js` and `404.html` use the paths.
 - **Page transitions**: `withTransition()` in `app.js` wraps every page change in `document.startViewTransition` (450 ms crossfade, set on `::view-transition-*(root)` in `styles.css`). Without View Transitions it falls back to the `.aspb-page` fade plus header colour transitions (`.aspb-header`). Skipped under reduced motion.
 - **Events** become "past" once their last day has passed and only past events are shown. Tabs are **Past Events** (`type: Performance`) and **Past Competitions** (`type: Competition`).
 - **Book Us packages**: `Packages` in `pages/book.js` renders cards from `PACKAGES` (line-up letters p/s/b/m, "Good for" text) above the unchanged form section. `PERFS` is the single list of Performance options; cards pick one via `choose()`, which ticks the radio, shows the "Picked from the card above" tag and scrolls to `.aspb-book-panel`. CSS is under `aspb-pk-` in `styles.css`.
@@ -102,7 +105,7 @@ When changing a schema, keep stored values backward compatible (the loaders acce
 
 ## Release workflow (follow every time)
 
-1. Bump the version: patch `v1.7.x` for fixes, minor `v1.x.0` for features. Update `<meta name="version">` in `index.html` and add a dated entry at the top of `CHANGELOG.md`.
+1. Bump the version: patch `v1.7.x` for fixes, minor `v1.x.0` for features. Update `<meta name="version">` in all four shells (`index.html`, `about/`, `events/`, `book/`) and add a dated entry at the top of `CHANGELOG.md`.
 2. **Never overwrite CMS-managed or secret files** in an update: `events.json`, `hero.json`, `instagram.json`, `.pages.yml` (unless the schema changes, then give the full new config to paste into Pages CMS Configuration), `assets/js/form-config.js`, `CNAME`.
 3. Use `v<version>` as the commit message.
 4. Test at 375px, 768px and 1024px+ widths: no horizontal scroll, no console errors.
