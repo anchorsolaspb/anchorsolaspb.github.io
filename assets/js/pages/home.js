@@ -184,7 +184,7 @@
       }
     }, React.createElement("div", null, React.createElement(Eyebrow, {
       inverse: true
-    }, "Alumni pipe band of the 64th Boys' Brigade Singapore"), React.createElement("h1", {
+    }, "Pipes and drums \xB7 Singapore"), React.createElement("h1", {
       style: {
         margin: '28px 0 0',
         font: '300 clamp(48px,5.4vw,80px)/1.0 var(--font-serif)',
@@ -197,7 +197,7 @@
         font: '400 18px/1.6 var(--font-sans)',
         color: 'var(--navy-200)'
       }
-    }, "Founded in 2026, Anchor Solas Pipe Band is the official alumni pipe band of the 64th Boys' Brigade Singapore."), React.createElement("div", {
+    }, "Founded in 2026, Anchor Solas Pipe Band is an independent pipe band in Singapore, with roots in the 64th Boys' Brigade."), React.createElement("div", {
       style: {
         display: 'flex',
         gap: 12,
@@ -244,7 +244,7 @@
     }, React.createElement(Route, {
       n: "01 · ABOUT",
       title: "Who we are",
-      body: "Our story, our name, and the heritage of the 64th Boys' Brigade that we carry forward.",
+      body: "Our story, our name, and the Boys' Brigade roots we carry forward.",
       cta: "Read about us",
       to: "about",
       go: go

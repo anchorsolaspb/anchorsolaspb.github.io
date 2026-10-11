@@ -4,11 +4,12 @@ Project memory for Claude Code. Put this file at the root of the `anchorsolaspb.
 
 ## What this is
 
-- Website for **Anchor Solas Pipe Band (ASPB)**, the alumni pipe band of the 64th Boys' Brigade Singapore, founded 2026.
+- Website for **Anchor Solas Pipe Band (ASPB)**, an independent (private) pipe band in Singapore, founded 2026.
+- **Rebrand (v1.12.0):** the band is no longer the official alumni band of the 64th Boys' Brigade. Never call it "alumni" or "official" band. Describe it as "an independent pipe band in Singapore, with roots in the 64th Boys' Brigade", and mention that it still trains the 64th Boys' Brigade Pipe Band.
 - Live at **https://www.anchorsolaspb.com** (HTTPS enforced). `https://anchorsolaspb.github.io` redirects there.
 - Built and maintained by Crego (owner of the repo and the `anchorsolaspb` GitHub organisation).
 - Must stay **free to run**. Do not add paid services.
-- Latest built version is **v1.11.0** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
+- Latest built version is **v1.12.0** (see `CHANGELOG.md`). The `<meta name="version">` tag in `index.html` holds the current version.
 
 ## Hosting and services
 
