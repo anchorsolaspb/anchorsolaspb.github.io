@@ -67,7 +67,12 @@
         lineHeight: 1.5,
         color: 'var(--navy-800)'
       }
-    }, "Founded in 2026, Anchor Solas Pipe Band is the official alumni pipe band of the 64th Boys' Brigade Singapore."), React.createElement(Body, null, "The band was established as a sustainability initiative to safeguard and advance the piping and drumming tradition of the 64th Boys' Brigade. By uniting passionate alumni, Anchor Solas Pipe Band provides a long-term platform for past and present members to continue playing, performing, and giving back to the community.")), React.createElement("div", {
+    }, "Founded in 2026, Anchor Solas Pipe Band is an independent pipe band in Singapore."), React.createElement(Body, null, React.createElement("b", {
+      style: {
+        fontWeight: 600,
+        color: 'var(--navy-800)'
+      }
+    }, "Our roots."), " Anchor Solas began with former members of the 64th Boys' Brigade Pipe Band. Today we play as an independent band, and we still train the 64th Boys' Brigade Pipe Band, passing on the tradition that started us.")), React.createElement("div", {
       className: "aspb-frame",
       style: {
         padding: 14
@@ -170,7 +175,7 @@
         display: 'flex',
         flexDirection: 'column'
       }
-    }, [['Standards & teaching', 'We actively elevate individual and ensemble playing standards while training our members in pedagogy, developing the next generation of pipe band instructors.'], ['Performance & competition', 'We aim to deliver solid, high-calibre performances and actively participate in higher-grade pipe band competitions.']].map(([h, t], i) => React.createElement("div", {
+    }, [['Standards & teaching', 'We actively elevate individual and ensemble playing standards while training our members in pedagogy, developing the next generation of pipe band instructors, including training the 64th Boys\' Brigade Pipe Band.'], ['Performance & competition', 'We aim to deliver solid, high-calibre performances and actively participate in higher-grade pipe band competitions.']].map(([h, t], i) => React.createElement("div", {
       key: h,
       style: {
         borderTop: '2px solid var(--navy-800)',
@@ -200,7 +205,7 @@
         lineHeight: 1.6,
         margin: '28px 0 0'
       }
-    }, "By bridging past generations with current learners, we ensure that the legacy of the 64th Boys' Brigade Pipe Band remains strong, self-sustaining, and bright for years to come."), React.createElement(Body, {
+    }, "By bridging experienced players with new learners, including the boys of the 64th Boys' Brigade Pipe Band, we keep the piping and drumming tradition strong and bright for years to come."), React.createElement(Body, {
       style: {
         margin: '40px 0 0',
         color: 'var(--text-muted)'
