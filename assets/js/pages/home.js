@@ -197,7 +197,7 @@
         font: '400 18px/1.6 var(--font-sans)',
         color: 'var(--navy-200)'
       }
-    }, "Founded in 2026, Anchor Solas Pipe Band is an independent pipe band in Singapore, with roots in the 64th Boys' Brigade."), React.createElement("div", {
+    }, "Founded in 2026, Anchor Solas Pipe Band is an independent pipe band in Singapore."), React.createElement("div", {
       style: {
         display: 'flex',
         gap: 12,
@@ -244,14 +244,14 @@
     }, React.createElement(Route, {
       n: "01 · ABOUT",
       title: "Who we are",
-      body: "Our story, our name, and the Boys' Brigade roots we carry forward.",
+      body: "Our story, our name, and the tradition we carry forward.",
       cta: "Read about us",
       to: "about",
       go: go
     }), React.createElement(Route, {
       n: "02 · EVENTS",
       title: "Where we've played",
-      body: "Performances, brigade events and pipe band competitions we've been part of.",
+      body: "Performances and pipe band competitions we've been part of.",
       cta: "See events",
       to: "events",
       go: go

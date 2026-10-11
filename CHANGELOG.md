@@ -1,5 +1,10 @@
 # Anchor Solas Pipe Band website: changelog
 
+## v1.12.1 (11 Oct 2026)
+- Fewer references to the 64th Boys' Brigade. The band's roots and its training of the 64th Boys' Brigade Pipe Band are now mentioned only in the "Who we are" section at the top of the About page (the "Our roots" paragraph and the festival photo caption).
+- Removed from: the Home intro, the Home About card, the About page's Google description, the teaching objective, the vision, and the meaning of "Anchor".
+- Home Events card now reads "Performances and pipe band competitions we've been part of." (brigade events removed).
+
 ## v1.12.0 (11 Oct 2026)
 - Rebrand: the band is now described as an independent pipe band in Singapore instead of the official alumni band of the 64th Boys' Brigade.
 - Home: the line above the headline reads "Pipes and drums · Singapore", the intro says the band has roots in the 64th Boys' Brigade, and the About card mentions those roots.
