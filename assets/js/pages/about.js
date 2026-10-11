@@ -136,7 +136,7 @@
         gridTemplateColumns: '1fr 1fr',
         borderTop: '1px solid var(--border-on-inverse)'
       }
-    }, [['Anchor', 'Anchor symbolizes our steadfast roots of a foundation built on stability, discipline, and the strong heritage of the Boys\' Brigade.'], ['Solas', 'Solas is a Gaelic for light, representing a beacon or lighthouse, offering clear direction, guidance, and inspiration through our music.']].map(([w, t], i) => React.createElement("div", {
+    }, [['Anchor', 'Anchor symbolizes our steadfast roots and a foundation built on stability, discipline and heritage.'], ['Solas', 'Solas is a Gaelic for light, representing a beacon or lighthouse, offering clear direction, guidance, and inspiration through our music.']].map(([w, t], i) => React.createElement("div", {
       key: w,
       style: {
         padding: i ? '40px 0 0 40px' : '40px 40px 0 0',
@@ -175,7 +175,7 @@
         display: 'flex',
         flexDirection: 'column'
       }
-    }, [['Standards & teaching', 'We actively elevate individual and ensemble playing standards while training our members in pedagogy, developing the next generation of pipe band instructors, including training the 64th Boys\' Brigade Pipe Band.'], ['Performance & competition', 'We aim to deliver solid, high-calibre performances and actively participate in higher-grade pipe band competitions.']].map(([h, t], i) => React.createElement("div", {
+    }, [['Standards & teaching', 'We actively elevate individual and ensemble playing standards while training our members in pedagogy, developing the next generation of pipe band instructors.'], ['Performance & competition', 'We aim to deliver solid, high-calibre performances and actively participate in higher-grade pipe band competitions.']].map(([h, t], i) => React.createElement("div", {
       key: h,
       style: {
         borderTop: '2px solid var(--navy-800)',
@@ -205,7 +205,7 @@
         lineHeight: 1.6,
         margin: '28px 0 0'
       }
-    }, "By bridging experienced players with new learners, including the boys of the 64th Boys' Brigade Pipe Band, we keep the piping and drumming tradition strong and bright for years to come."), React.createElement(Body, {
+    }, "By bridging experienced players with new learners, we keep the piping and drumming tradition strong and bright for years to come."), React.createElement(Body, {
       style: {
         margin: '40px 0 0',
         color: 'var(--text-muted)'
